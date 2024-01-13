@@ -64,5 +64,22 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    ############## AUDITORIA ###############
    Route::get('/auditoria', [App\Http\Controllers\Admin\AcitivityLogController::class, 'index'])->name('logs.view');
 
+
+   ############## UNIDADE GESTORA ###############
+   Route::get('/unidade-gestora', [App\Http\Controllers\ManagementUnitController::class, 'index'])->name('management_units.view');
+   Route::get('/unidade-gestora/cadastro', [App\Http\Controllers\ManagementUnitController::class, 'create'])->name('management_units.create');
+   Route::get('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'edit'])->name('management_units.edit');
+   Route::post('/unidade-gestora', [App\Http\Controllers\ManagementUnitController::class, 'store'])->name('management_units.store');
+   Route::put('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'update'])->name('management_units.update');
+   Route::delete('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'destroy'])->name('management_units.delete');
+
+   ############## SETOR ###############
+   Route::get('/setor', [App\Http\Controllers\SectorController::class, 'index'])->name('sectors.view');
+   Route::get('/setor/cadastro', [App\Http\Controllers\SectorController::class, 'create'])->name('sectors.create');
+   Route::get('/setor/{id}', [App\Http\Controllers\SectorController::class, 'edit'])->name('sectors.edit');
+   Route::post('/setor', [App\Http\Controllers\SectorController::class, 'store'])->name('sectors.store');
+   Route::put('/setor/{id}', [App\Http\Controllers\SectorController::class, 'update'])->name('sectors.update');
+   Route::delete('/setor/{id}', [App\Http\Controllers\SectorController::class, 'destroy'])->name('sectors.delete');
+
 });
 

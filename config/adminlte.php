@@ -317,6 +317,17 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Unidade gestora',
+            'route'       => 'management_units.view',
+            'icon'        => 'far fa-fw fa-file',
+            'can'         => 'management_units.view',
+        ],[
+            'text'        => 'Setores',
+            'route'       => 'sectors.view',
+            'icon'        => 'far fa-fw fa-file',
+            'can'         => 'sectors.view',
+        ],
         ['header' => 'Configurações'],
         [
             'text'    => 'Administração',
