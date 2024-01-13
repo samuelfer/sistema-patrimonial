@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdatePermission;
 use App\Models\Permission;
-use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
