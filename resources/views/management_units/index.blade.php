@@ -26,18 +26,22 @@
                     <table id="list-management-units" class="table table-bordered table-striped dataTable dtr-inline"
                         aria-describedby="list-management-units">
                         <thead>
-                        <th>ID</th>
+                            <th>ID</th>
                             <th>NOME</th>
                             <th>CÓDIGO</th>
+                            <th>Telefone</th>
+                            <th>Cnpj</th>
                             <th style="width: 20px;">AÇÕES</th>
                         </thead>
                         <tbody>
 
                         @forelse($units as $unit)
                         <tr>
-                            <td>{{ $unit->id}}</td>
-                            <td>{{ $unit->name}}</td>
-                            <td>{{ $unit->cod}}</td>
+                            <td>{{ $unit->id }}</td>
+                            <td>{{ $unit->name }}</td>
+                            <td>{{ $unit->cod }}</td>
+                            <td>{{ $unit->phone }}</td>
+                            <td>{{ $unit->cnpj }}</td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('management_units.update')
                                     <a href="{{route('management_units.edit',[$unit->id])}}"

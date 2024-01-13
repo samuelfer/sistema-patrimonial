@@ -40,6 +40,24 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name='phone' id="phone" 
+                            placeholder="Digite um telefone" value="{{ old('phone') }}" required>
+                            @error('phone')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cod">Cnpj</label>
+                        <input type="text" class="form-control @error('cnpj') is-invalid @enderror" name='cnpj' id="cnpj" 
+                            placeholder="Digite um cnpj" value="{{ old('cnpj') }}" required>
+                            @error('cnpj')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label for="descricao">Descrição</label>
                         <input type="text" class="form-control @error('descricao') is-invalid @enderror" 
                             name="descricao" id="descricao" placeholder="Digite a descrição" value="{{ old('descricao') }}">

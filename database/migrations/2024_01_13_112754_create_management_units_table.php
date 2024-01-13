@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('cod');
+            $table->string('cnpj')->nullable();
+            $table->string('phone')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });
