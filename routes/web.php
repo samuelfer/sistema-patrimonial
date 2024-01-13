@@ -73,13 +73,22 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'update'])->name('management_units.update');
    Route::delete('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'destroy'])->name('management_units.delete');
 
+   ############## ORGAO ###############
+   Route::get('/orgaos', [App\Http\Controllers\OrganController::class, 'index'])->name('organs.view');
+   Route::get('/orgaos/cadastro', [App\Http\Controllers\OrganController::class, 'create'])->name('organs.create');
+   Route::get('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'edit'])->name('organs.edit');
+   Route::post('/orgaos', [App\Http\Controllers\OrganController::class, 'store'])->name('organs.store');
+   Route::put('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'update'])->name('organs.update');
+   Route::delete('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'destroy'])->name('organs.delete');
+
+
    ############## SETOR ###############
-   Route::get('/setor', [App\Http\Controllers\SectorController::class, 'index'])->name('sectors.view');
-   Route::get('/setor/cadastro', [App\Http\Controllers\SectorController::class, 'create'])->name('sectors.create');
-   Route::get('/setor/{id}', [App\Http\Controllers\SectorController::class, 'edit'])->name('sectors.edit');
-   Route::post('/setor', [App\Http\Controllers\SectorController::class, 'store'])->name('sectors.store');
-   Route::put('/setor/{id}', [App\Http\Controllers\SectorController::class, 'update'])->name('sectors.update');
-   Route::delete('/setor/{id}', [App\Http\Controllers\SectorController::class, 'destroy'])->name('sectors.delete');
+   Route::get('/setores', [App\Http\Controllers\SectorController::class, 'index'])->name('sectors.view');
+   Route::get('/setores/cadastro', [App\Http\Controllers\SectorController::class, 'create'])->name('sectors.create');
+   Route::get('/setores/{id}', [App\Http\Controllers\SectorController::class, 'edit'])->name('sectors.edit');
+   Route::post('/setores', [App\Http\Controllers\SectorController::class, 'store'])->name('sectors.store');
+   Route::put('/setores/{id}', [App\Http\Controllers\SectorController::class, 'update'])->name('sectors.update');
+   Route::delete('/setores/{id}', [App\Http\Controllers\SectorController::class, 'destroy'])->name('sectors.delete');
 
 });
 
