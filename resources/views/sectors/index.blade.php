@@ -29,7 +29,8 @@
                             <th>ID</th>
                             <th>NOME</th>
                             <th>CÓDIGO</th>
-                            <th>UNID. GESTORA</th>
+                            <th>ÓRGÃO</th>
+                            <th>ATIVO</th>
                             <th style="width: 20px;">AÇÕES</th>
                         </thead>
                         <tbody>
@@ -39,7 +40,8 @@
                             <td>{{ $sector->id}}</td>
                             <td>{{ $sector->name}}</td>
                             <td>{{ $sector->cod}}</td>
-                            <td>{{ $sector->managementUnit->name}}</td>
+                            <td>{{ $sector->organ->name}}</td>
+                            <td>{{ $sector->status == 1 ? 'Sim' : 'Não' }}</td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('sectors.update')
                                     <a href="{{route('sectors.edit',[$sector->id])}}"

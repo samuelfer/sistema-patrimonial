@@ -44,15 +44,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="management_unit_id">Selecione a Unidade Gestora</label>
-                        <select class="js-basic form-control" name="management_unit_id">
+                        <label for="organ_id">Selecione órgão</label>
+                        <select class="js-basic form-control" name="organ_id">
                             <option value="">Selecione</option>
-                                @foreach($managementUnits as $unit)
-                                    <option @if ($unit->id == $sector->management_unit_id) selected @endif
-                                     value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                @foreach($organs as $organ)
+                                    <option @if ($organ->id == $sector->organ_id) selected @endif
+                                     value="{{ $organ->id }}">{{ $organ->name }}</option>
                                 @endforeach
                         </select>
-                        @error('management_unit_id')
+                        @error('organ_id')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

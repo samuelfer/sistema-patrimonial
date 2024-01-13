@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Base ACL',
+    'title' => 'Manage Patrimony',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>SIS-</b>ACL',
+    'logo' => '<b>Manage-</b>Patrimony',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -320,12 +320,19 @@ return [
         [
             'text'        => 'Unidade gestora',
             'route'       => 'management_units.view',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'far fas fa-columns',
             'can'         => 'management_units.view',
-        ],[
+        ],
+        [
+            'text'        => 'Órgãos',
+            'route'       => 'organs.view',
+            'icon'        => 'far fas fa-table',
+            'can'         => 'organs.view',
+        ],
+        [
             'text'        => 'Setores',
             'route'       => 'sectors.view',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'far fas fa-table',
             'can'         => 'sectors.view',
         ],
         ['header' => 'Configurações'],

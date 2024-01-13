@@ -40,14 +40,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="management_unit_id">Selecione a Unidade Gestora</label>
-                        <select class="js-basic form-control" name="management_unit_id">
+                        <label for="organ_id">Selecione o órgão</label>
+                        <select class="js-basic form-control" name="organ_id">
                             <option value="">Selecione</option>
-                            @foreach($managementUnits as $unit)
-                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                            @foreach($organs as $organ)
+                                <option value="{{ $organ->id }}">{{ $organ->name }}</option>
                             @endforeach
                         </select>
-                        @error('management_unit_id')
+                        @error('organ_id')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

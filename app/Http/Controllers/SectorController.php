@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSector;
-use App\Models\ManagementUnit;
+use App\Models\Organ;
 use App\Models\Sector;
 use Exception;
-use Illuminate\Support\Facades\Auth;
 
 class SectorController extends Controller
 {
@@ -16,7 +15,7 @@ class SectorController extends Controller
      */
     public function index()
     {
-        $sectors = Sector::with('managementUnit')->paginate(10);
+        $sectors = Sector::with('organ')->paginate(10);
         return view('sectors.index', compact('sectors'));
     }
 
@@ -25,8 +24,8 @@ class SectorController extends Controller
      */
     public function create()
     {
-        $managementUnits = ManagementUnit::all();
-        return view('sectors.create', compact('managementUnits'));
+        $organs = Organ::all();
+        return view('sectors.create', compact('organs'));
     }
 
     public function store(StoreUpdateSector $request)
@@ -55,16 +54,12 @@ class SectorController extends Controller
      */
     public function edit(string $id)
     {
-        if (!Auth::user()->is_admin) {
-            return redirect()->route('sectors.view')->with('error', 'O usuário logado não pode editar unidade gestora!');
-        }
-
         $sector = Sector::find($id);
         if (!$sector) {
             return redirect()->route('sectors.view')->with('error', 'Registro não encontrado!');
         }
-        $managementUnits = ManagementUnit::all();
-        return view('sectors.edit', compact('sector', 'managementUnits'));
+        $organs = Organ::all();
+        return view('sectors.edit', compact('sector', 'organs'));
     }
 
     /**
@@ -73,10 +68,7 @@ class SectorController extends Controller
     public function update(StoreUpdateSector $request, string $id)
     {
         try {
-            if (!Auth::user()->is_admin) {
-                return redirect()->route('sectors.view')->with('error', 'O usuário logado não pode editar unidade gestora!');
-            }
-            
+           
             $sector = Sector::find($id);
             $data = $request->all();
 
@@ -94,10 +86,6 @@ class SectorController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!Auth::user()->is_admin) {
-            return redirect()->route('sectors.view')->with('error', 'O usuário logado não pode excluir permissões!');
-        }
-
         $sector = Sector::find($id);
      
         if (!$sector) {

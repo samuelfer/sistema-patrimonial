@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('sigla')->nullable();
             $table->string('description')->nullable();
-            $table->foreignIdFor(\App\Models\ManagementUnit::class)->onDelete('CASCADE');
+            $table->boolean('status')->default(1);
+            $table->foreignIdFor(\App\Models\Organ::class)->onDelete('CASCADE');
             $table->timestamps();
         });
     }

@@ -12,17 +12,17 @@ class Sector extends Model
 {
     use HasFactory, LogsActivity;
 
-    protected $fillable = ['name', 'sigla', 'status', 'management_unit_id'];
+    protected $fillable = ['name', 'sigla', 'status', 'organ_id'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'sigla', 'status', 'management_unit_id'])
+        ->logOnly(['name', 'sigla', 'status', 'organ_id'])
         ->dontSubmitEmptyLogs();
     }
 
-    public function managementUnit(): BelongsTo
+    public function organ(): BelongsTo
     {
-        return $this->belongsTo(ManagementUnit::class);
+        return $this->belongsTo(Sector::class);
     }
 }
