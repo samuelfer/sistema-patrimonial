@@ -98,5 +98,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'update'])->name('offices.update');
    Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.destroy');
 
+
+   ############## GESTOES ###############
+   Route::get('/gestoes', [App\Http\Controllers\ManagementController::class, 'index'])->name('managements.view');
+   Route::get('/gestoes/cadastro', [App\Http\Controllers\ManagementController::class, 'create'])->name('managements.create');
+   Route::get('/gestoes/{id}', [App\Http\Controllers\ManagementController::class, 'edit'])->name('managements.edit');
+   Route::post('/gestoes', [App\Http\Controllers\ManagementController::class, 'store'])->name('managements.store');
+   Route::put('/gestoes/{id}', [App\Http\Controllers\ManagementController::class, 'update'])->name('managements.update');
+   Route::delete('/gestoes/{id}', [App\Http\Controllers\ManagementController::class, 'destroy'])->name('managements.destroy');
+
 });
 

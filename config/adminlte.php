@@ -341,6 +341,12 @@ return [
             'icon'        => 'far fas fa-edit',
             'can'         => 'offices.view',
         ],
+        [
+            'text'        => 'Gestões',
+            'route'       => 'managements.view',
+            'icon'        => 'far fas fa-th',
+            'can'         => 'managements.view',
+        ],
         ['header' => 'Configurações'],
         [
             'text'    => 'Administração',
@@ -367,7 +373,7 @@ return [
                 [
                     'text' => 'Auditoria',
                     'route'  => 'logs.view',
-                    'icon' => 'nav-icon fas fa-book',
+                    'icon' => 'fas fa-book',
                     'can'  => 'logs.view'
                 ],
             ],
