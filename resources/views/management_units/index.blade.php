@@ -14,7 +14,7 @@
         @include('shared.error-message')
         <h3 class="card-title">Listagem de Unidades Gestoras</h3>
             @can('management_units.create')
-                <a href="{{route('management_units.create')}}" class="btn btn-sm btn-success float-right">NOVA PERMISSÃO</a>
+                <a href="{{route('management_units.create')}}" class="btn btn-sm btn-success float-right">NOVA UNIDADE GESTORA</a>
             @endcan
     </div>
 
@@ -51,7 +51,7 @@
                                     </a>
                                 @endcan
                                 @can('management_units.destroy')
-                                <form action="{{route('management_units.delete', $unit->id)}}" method="post" class="delete-management-unit">
+                                <form action="{{route('management_units.destroy', $unit->id)}}" method="post" class="delete-management-unit">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>

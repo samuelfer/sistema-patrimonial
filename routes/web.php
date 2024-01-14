@@ -33,7 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/permissoes/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'edit'])->name('permissions.edit');
     Route::post('/permissoes', [App\Http\Controllers\Admin\PermissionController::class, 'store'])->name('permissions.store');
     Route::put('/permissoes/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'update'])->name('permissions.update');
-    Route::delete('/permissoes/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'destroy'])->name('permissions.delete');
+    Route::delete('/permissoes/{id}', [App\Http\Controllers\Admin\PermissionController::class, 'destroy'])->name('permissions.destroy');
 
 
     ############## PERFIS (ROLES) ###############
@@ -42,7 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/perfis/{id}', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('roles.edit');
     Route::post('/perfis', [App\Http\Controllers\Admin\RoleController::class, 'store'])->name('roles.store');
     Route::put('/perfis/{id}', [App\Http\Controllers\Admin\RoleController::class, 'update'])->name('roles.update');
-    Route::delete('/perfis/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('roles.delete');
+    Route::delete('/perfis/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('roles.destroy');
 
     ############## USUARIOS ###############
     Route::get('/usuarios', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.view');
@@ -50,7 +50,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/usuarios/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
     Route::post('/usuarios', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
     Route::put('/usuarios/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
-    Route::delete('/usuarios/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.delete');
+    Route::delete('/usuarios/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/meu-perfil/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
    
    
@@ -71,7 +71,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::get('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'edit'])->name('management_units.edit');
    Route::post('/unidade-gestora', [App\Http\Controllers\ManagementUnitController::class, 'store'])->name('management_units.store');
    Route::put('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'update'])->name('management_units.update');
-   Route::delete('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'destroy'])->name('management_units.delete');
+   Route::delete('/unidade-gestora/{id}', [App\Http\Controllers\ManagementUnitController::class, 'destroy'])->name('management_units.destroy');
 
    ############## ORGAO ###############
    Route::get('/orgaos', [App\Http\Controllers\OrganController::class, 'index'])->name('organs.view');
@@ -79,7 +79,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::get('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'edit'])->name('organs.edit');
    Route::post('/orgaos', [App\Http\Controllers\OrganController::class, 'store'])->name('organs.store');
    Route::put('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'update'])->name('organs.update');
-   Route::delete('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'destroy'])->name('organs.delete');
+   Route::delete('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'destroy'])->name('organs.destroy');
 
 
    ############## SETOR ###############
@@ -88,7 +88,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::get('/setores/{id}', [App\Http\Controllers\SectorController::class, 'edit'])->name('sectors.edit');
    Route::post('/setores', [App\Http\Controllers\SectorController::class, 'store'])->name('sectors.store');
    Route::put('/setores/{id}', [App\Http\Controllers\SectorController::class, 'update'])->name('sectors.update');
-   Route::delete('/setores/{id}', [App\Http\Controllers\SectorController::class, 'destroy'])->name('sectors.delete');
+   Route::delete('/setores/{id}', [App\Http\Controllers\SectorController::class, 'destroy'])->name('sectors.destroy');
 
    ############## CARGO E FUNCAO ###############
    Route::get('/cargos', [App\Http\Controllers\OfficeController::class, 'index'])->name('offices.view');
@@ -96,7 +96,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::get('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'edit'])->name('offices.edit');
    Route::post('/cargos', [App\Http\Controllers\OfficeController::class, 'store'])->name('offices.store');
    Route::put('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'update'])->name('offices.update');
-   Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.delete');
+   Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.destroy');
 
 });
 
