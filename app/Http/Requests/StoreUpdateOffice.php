@@ -23,6 +23,8 @@ class StoreUpdateOffice extends FormRequest
     {
         $rules = [
             'name' => 'required|min:3|max:255|unique:offices',
+            'phone' => 'numeric',
+            'email' => 'email'
         ];
 
         if ($this->method() === 'PUT') {
@@ -41,6 +43,8 @@ class StoreUpdateOffice extends FormRequest
             'name.min' => 'O tamanho mínimo do nome é de 3 caracteres',
             'name.max' => 'O tamanho máximo do nome é de 255 caracteres',
             'name.unique' => 'Esse nome já está em uso',
+            'phone.numeric' => 'O telefone precisa ter apenas números',
+            'email.email' => 'O email precisa ser válido',
         ];
     }
 }

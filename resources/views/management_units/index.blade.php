@@ -29,8 +29,9 @@
                             <th>ID</th>
                             <th>NOME</th>
                             <th>CÓDIGO</th>
-                            <th>Telefone</th>
-                            <th>Cnpj</th>
+                            <th>TELEFONE</th>
+                            <th>EMAIL</th>
+                            <th>CNPJ</th>
                             <th style="width: 20px;">AÇÕES</th>
                         </thead>
                         <tbody>
@@ -41,6 +42,7 @@
                             <td>{{ $unit->name }}</td>
                             <td>{{ $unit->cod }}</td>
                             <td>{{ $unit->phone }}</td>
+                            <td>{{ $unit->email }}</td>
                             <td>{{ $unit->cnpj }}</td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('management_units.update')

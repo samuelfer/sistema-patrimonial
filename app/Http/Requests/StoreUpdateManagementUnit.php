@@ -25,14 +25,16 @@ class StoreUpdateManagementUnit extends FormRequest
             'name' => 'required|min:3|max:255|unique:management_units',
             'cod'  => 'required|min:3|max:255|unique:management_units',
             'description' => 'max:255',
-            'cnpj' => 'numeric|cnpj|unique:management_units'
+            'cnpj' => 'numeric|unique:management_units',
+            'phone' => 'numeric',
+            'email' => 'email'
         ];
 
         if ($this->method() === 'PUT') {
             $rules = [
                 'name' => 'required|min:3|max:255|unique:management_units,name,'.$this->id.',id',
-                'cod'  => 'required|min:3|max:255|unique:management_units,cod,'.$this->cod.',cod',
-                'cnpj'  => 'numeric|cnpj|unique:management_units,cnpj,'.$this->cod.',cnpj',
+                'cod'  => 'required|min:3|max:255|unique:management_units,cod,'.$this->id.',id',
+                'cnpj'  => 'numeric|unique:management_units,cnpj,'.$this->id.',id',
             ];
         }
 
@@ -51,6 +53,10 @@ class StoreUpdateManagementUnit extends FormRequest
             'cod.max' => 'O tamanho máximo do código é de 255 caracteres',
             'cod.unique' => 'Esse código já está em uso',
             'description.max' => 'O tamanho máximo permitido de 255 caracteres',
+            'cnpj.unique' => 'Esse cnpj já está em uso',
+            'cnpj.numeric' => 'O cnpj precisa ter apenas números',
+            'phone.numeric' => 'O telefone precisa ter apenas números',
+            'email.email' => 'O email precisa ser válido',
         ];
     }
 }

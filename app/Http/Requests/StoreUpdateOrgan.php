@@ -25,7 +25,8 @@ class StoreUpdateOrgan extends FormRequest
             'name' => 'required|min:3|max:255|unique:organs',
             'management_unit_id' => 'required',
             'description' => 'max:255',
-            'status' => 'required|boolean'
+            'phone' => 'numeric',
+            'email' => 'email'
         ];
 
         if ($this->sigla != null) {
@@ -62,8 +63,8 @@ class StoreUpdateOrgan extends FormRequest
             'sigla.max' => 'O tamanho máximo do sigla é de 255 caracteres',
             'sigla.unique' => 'Esse sigla já está em uso',
             'sigla.max' => 'O tamanho máximo permitido de 255 caracteres',
-            'status.required' => 'O status é obrigatório',
-            'status.boolean' => 'O status precisa ser Sim ou Não'
+            'phone.numeric' => 'O telefone precisa ter apenas números',
+            'email.email' => 'O email precisa ser válido',
         ];
     }
 }

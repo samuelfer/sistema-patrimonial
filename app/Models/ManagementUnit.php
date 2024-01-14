@@ -11,12 +11,12 @@ class ManagementUnit extends Model
 {
     use HasFactory, LogsActivity;
 
-    protected $fillable = ['name', 'cod', 'description', 'cnpj', 'phone'];
+    protected $fillable = ['name', 'cod', 'description', 'cnpj', 'phone', 'email'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'cod', 'description', 'cnpj', 'phone'])
+        ->logOnly(['name', 'cod', 'description', 'cnpj', 'phone', 'email'])
         ->dontSubmitEmptyLogs();
     }
 }

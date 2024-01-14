@@ -59,6 +59,27 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                            value="{{$sector->phone}}" name='phone' id="phone" 
+                            placeholder="Digite um telefone" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                            value="{{$sector->email}}"name='email' id="email" 
+                            placeholder="Digite um email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="status">Status</label>
                         <select class="js-basic form-control" name="status">
                             <option value="">Selecione</option>
