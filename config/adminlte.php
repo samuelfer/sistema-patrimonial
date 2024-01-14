@@ -332,8 +332,14 @@ return [
         [
             'text'        => 'Setores',
             'route'       => 'sectors.view',
-            'icon'        => 'far fas fa-table',
+            'icon'        => 'far fas fa-th',
             'can'         => 'sectors.view',
+        ],
+        [
+            'text'        => 'Cargos e Funções',
+            'route'       => 'offices.view',
+            'icon'        => 'far fas fa-edit',
+            'can'         => 'offices.view',
         ],
         ['header' => 'Configurações'],
         [
