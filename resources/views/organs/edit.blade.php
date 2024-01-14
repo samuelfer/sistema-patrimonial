@@ -11,6 +11,7 @@
 <div class="row">
 
     <div class="col-md-12">
+        @include('shared.error-message')
 
         <div class="card card-primary">
             <div class="card-header">
@@ -53,6 +54,39 @@
                                 @endforeach
                         </select>
                         @error('management_unit_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                            value="{{$organ->phone}}" name='phone' id="phone" 
+                            placeholder="Digite um telefone" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                            value="{{$organ->email}}"name='email' id="email" 
+                            placeholder="Digite um email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="js-basic form-control" name="status">
+                            <option value="">Selecione</option>
+                            <option value="1" @if ($organ->status == 1) selected @endif>Sim</option>
+                            <option value="0" @if ($organ->status == 0) selected @endif>Não</option>
+                        </select>
+                        @error('status')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

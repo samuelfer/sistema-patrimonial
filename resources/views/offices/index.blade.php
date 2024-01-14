@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de Unidades Gestoras')
+@section('title', 'Lista de Cargos e Função')
 
 @section('content_header')
 <h3></h3>
@@ -12,9 +12,9 @@
     <div class="card-header">
         @include('shared.success-message')
         @include('shared.error-message')
-        <h3 class="card-title">Listagem de Unidades Gestoras</h3>
-            @can('management_units.create')
-                <a href="{{route('management_units.create')}}" class="btn btn-sm btn-success float-right">NOVA PERMISSÃO</a>
+        <h3 class="card-title">Listagem de Cargos e Funções</h3>
+            @can('offices.create')
+                <a href="{{route('offices.create')}}" class="btn btn-sm btn-success float-right">NOVO CARGO E FUNÇÃO</a>
             @endcan
     </div>
 
@@ -23,35 +23,29 @@
             
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="list-management-units" class="table table-bordered table-striped dataTable dtr-inline"
-                        aria-describedby="list-management-units">
+                    <table id="list-offices" class="table table-bordered table-striped dataTable dtr-inline"
+                        aria-describedby="list-offices">
                         <thead>
                             <th>ID</th>
                             <th>NOME</th>
-                            <th>CÓDIGO</th>
-                            <th>TELEFONE</th>
-                            <th>EMAIL</th>
-                            <th>CNPJ</th>
+                            <th>ATIVO</th>
                             <th style="width: 20px;">AÇÕES</th>
                         </thead>
                         <tbody>
 
-                        @forelse($units as $unit)
+                        @forelse($offices as $office)
                         <tr>
-                            <td>{{ $unit->id }}</td>
-                            <td>{{ $unit->name }}</td>
-                            <td>{{ $unit->cod }}</td>
-                            <td>{{ $unit->phone }}</td>
-                            <td>{{ $unit->email }}</td>
-                            <td>{{ $unit->cnpj }}</td>
+                            <td>{{ $office->id}}</td>
+                            <td>{{ $office->name}}</td>
+                            <td>{{ $office->status == 1 ? 'Sim' : 'Não' }}</td>
                             <td style="display: inline-block; width: 110px;">
-                                @can('management_units.update')
-                                    <a href="{{route('management_units.edit',[$unit->id])}}"
+                                @can('offices.update')
+                                    <a href="{{route('offices.edit',[$office->id])}}"
                                         class="btn btn-sm btn-success float-left">Editar
                                     </a>
                                 @endcan
-                                @can('management_units.destroy')
-                                <form action="{{route('management_units.delete', $unit->id)}}" method="post" class="delete-management-unit">
+                                @can('offices.destroy')
+                                <form action="{{route('offices.delete', $office->id)}}" method="post" class="delete-offices">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
@@ -62,7 +56,7 @@
 
                         @empty
                         <tr>
-                            <td colspan="5"> Ainda não há Unidade Gestora cadastrada.</td>
+                            <td colspan="5"> Ainda não há Cargo e Função cadastrado.</td>
                         </tr>
                         @endforelse
                     
@@ -86,7 +80,7 @@
 
         $(function () {
           
-            $("#list-management-units").DataTable({
+            $("#list-offices").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "search": "Pesquisar",
                 "paginate": {
@@ -101,7 +95,7 @@
             });
         });
 
-        $('.delete-management-unit').submit(function(ev) {
+        $('.delete-offices').submit(function(ev) {
             ev.preventDefault();
 
             Swal.fire({

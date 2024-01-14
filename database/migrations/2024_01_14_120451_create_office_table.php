@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sectors', function (Blueprint $table) {
+        Schema::create('offices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('sigla')->nullable();
-            $table->string('description')->nullable();
             $table->boolean('status')->default(1);
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
-            $table->foreignIdFor(\App\Models\Organ::class)->onDelete('CASCADE');
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sectors');
+        Schema::dropIfExists('office');
     }
 };

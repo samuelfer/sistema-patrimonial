@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('address')->nullable();
             $table->boolean('status')->default(1);
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->foreignIdFor(\App\Models\ManagementUnit::class)->onDelete('CASCADE');
             $table->timestamps();
         });

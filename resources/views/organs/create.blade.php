@@ -53,6 +53,28 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                            name='phone' id="phone" 
+                            placeholder="Digite um telefone" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                            name='email' id="email" 
+                            placeholder="Digite um email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <input type="hidden" name="status" value=1>
+
+                    <div class="form-group">
                         <label for="address">Endereço</label>
                         <input type="address" class="form-control @error('address') is-invalid @enderror" 
                             name="address" id="address" placeholder="Digite o endereço">

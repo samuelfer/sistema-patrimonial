@@ -3,20 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUpdateSector;
-use App\Models\Organ;
-use App\Models\Sector;
+use App\Http\Requests\StoreUpdateOffice;
+use App\Models\Office;
 use Exception;
 
-class SectorController extends Controller
+class OfficeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $sectors = Sector::with('organ')->paginate(10);
-        return view('sectors.index', compact('sectors'));
+        $offices = Office::all();
+        return view('offices.index', compact('offices'));
     }
 
     /**
@@ -24,17 +20,16 @@ class SectorController extends Controller
      */
     public function create()
     {
-        $organs = Organ::all();
-        return view('sectors.create', compact('organs'));
+        return view('offices.create');
     }
 
-    public function store(StoreUpdateSector $request)
+    public function store(StoreUpdateOffice $request)
     {
         try {
             $data = $request->all();
             $data['status'] = 1;
-            Sector::create($data);
-            return redirect()->route('sectors.view')->with('success', 'Registro salvo com sucesso!');
+            Office::create($data);
+            return redirect()->route('offices.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Erro ao tentar cadastrar!'.$e->getMessage());
@@ -55,27 +50,26 @@ class SectorController extends Controller
      */
     public function edit(string $id)
     {
-        $sector = Sector::find($id);
+        $sector = Office::find($id);
         if (!$sector) {
-            return redirect()->route('sectors.view')->with('error', 'Registro não encontrado!');
+            return redirect()->route('offices.view')->with('error', 'Registro não encontrado!');
         }
-        $organs = Organ::all();
-        return view('sectors.edit', compact('sector', 'organs'));
+        return view('offices.edit', compact('office'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUpdateSector $request, string $id)
+    public function update(StoreUpdateOffice $request, string $id)
     {
         try {
            
-            $sector = Sector::find($id);
+            $sector = Office::find($id);
             $data = $request->all();
 
             $sector->update($data);
 
-            return redirect()->route('sectors.view')->with('success', 'Registro salvo com sucesso!');
+            return redirect()->route('offices.view')->with('success', 'Registro salvo com sucesso!');
             
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Erro ao tentar salvar!');
@@ -87,13 +81,13 @@ class SectorController extends Controller
      */
     public function destroy(string $id)
     {
-        $sector = Sector::find($id);
+        $office = Office::find($id);
      
-        if (!$sector) {
+        if (!$office) {
             return redirect()->back()->with('error', 'Ocorreu um erro ao tentar excluir o registro.');
         }
 
-        $sector->delete();
-        return redirect()->route('sectors.view')->with('success', 'Registro excluído com sucesso!');
+        $office->delete();
+        return redirect()->route('offices.view')->with('success', 'Registro excluído com sucesso!');
     }
 }

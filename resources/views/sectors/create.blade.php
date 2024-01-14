@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="organ_id">Selecione o órgão</label>
+                        <label for="organ_id">Órgão</label>
                         <select class="js-basic form-control" name="organ_id">
                             <option value="">Selecione</option>
                             @foreach($organs as $organ)
@@ -50,6 +50,26 @@
                         @error('organ_id')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                             name='phone' id="phone" 
+                            placeholder="Digite um telefone" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                            name='email' id="email" 
+                            placeholder="Digite um email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
 
                     <div class="form-group">
