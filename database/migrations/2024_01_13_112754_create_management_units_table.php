@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('cod');
             $table->string('cnpj')->nullable();
             $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });
