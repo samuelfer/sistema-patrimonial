@@ -24,14 +24,15 @@ class StoreUpdateSector extends FormRequest
         $rules = [
             'name' => 'required|min:3|max:255|unique:sectors',
             'organ_id' => 'required',
-            'description' => 'max:255'
+            'description' => 'max:255',
         ];
 
         if ($this->sigla != null) {
             $rules = [
-                'sigla'  => 'min:2|max:255|unique:sectors',
+                'sigla'=> 'unique:sectors,sigla,'.$this->id.',sigla',
             ];
         }
+
 
         if ($this->method() === 'PUT') {
             $rules = [
@@ -40,7 +41,7 @@ class StoreUpdateSector extends FormRequest
 
             if ($this->sigla != null) {
                 $rules = [
-                    'sigla'=> 'min:2|max:255|unique:sectors,sigla,'.$this->sigla.',sigla',
+                    'sigla'=> 'min:2|max:255|unique:sectors,sigla,'.$this->id.',sigla',
                 ];
             }
         }
@@ -57,10 +58,6 @@ class StoreUpdateSector extends FormRequest
             'name.unique' => 'Esse nome já está em uso',
             'organ_id.required' => 'O órgão é obrigatório',
             'sigla.unique' => 'Essa sigla já está em uso',
-            'sigla.min' => 'O tamanho mínimo do sigla é de 3 caracteres',
-            'sigla.max' => 'O tamanho máximo do sigla é de 255 caracteres',
-            'sigla.unique' => 'Esse sigla já está em uso',
-            'sigla.max' => 'O tamanho máximo permitido de 255 caracteres',
         ];
     }
 }

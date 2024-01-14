@@ -11,6 +11,7 @@
 <div class="row">
 
     <div class="col-md-12">
+        @include('shared.error-message')
 
         <div class="card card-primary">
             <div class="card-header">
@@ -44,7 +45,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="organ_id">Selecione órgão</label>
+                        <label for="organ_id">Órgão</label>
                         <select class="js-basic form-control" name="organ_id">
                             <option value="">Selecione</option>
                                 @foreach($organs as $organ)
@@ -53,6 +54,18 @@
                                 @endforeach
                         </select>
                         @error('organ_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="js-basic form-control" name="status">
+                            <option value="">Selecione</option>
+                            <option value="1" @if ($sector->status == 1) selected @endif>Sim</option>
+                            <option value="0" @if ($sector->status == 0) selected @endif>Não</option>
+                        </select>
+                        @error('status')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

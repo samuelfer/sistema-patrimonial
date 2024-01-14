@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="organ_id">Selecione o órgão</label>
+                        <label for="organ_id">Órgão</label>
                         <select class="js-basic form-control" name="organ_id">
                             <option value="">Selecione</option>
                             @foreach($organs as $organ)
