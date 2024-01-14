@@ -18,69 +18,74 @@
             </div>
 
             <form action="{{route('sectors.store')}}" method="post" >
-                @csrf 
+                @csrf
                 <div class="card-body">
 
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name='name' id="name" 
-                            placeholder="Digite um nome" value="{{ old('name') }}" required>
-                            @error('name')
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name='name' id="name"
+                                placeholder="Digite um nome" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="cod">Sigla</label>
+                            <input type="text" class="form-control @error('sigla') is-invalid @enderror" name='sigla' id="sigla"
+                                placeholder="Digite uma sigla" value="{{ old('sigla') }}">
+                                @error('sigla')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="organ_id">Órgão</label>
+                            <select class="js-basic form-control" name="organ_id">
+                                <option value="">Selecione</option>
+                                @foreach($organs as $organ)
+                                    <option value="{{ $organ->id }}">{{ $organ->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('organ_id')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-                        <label for="cod">Sigla</label>
-                        <input type="text" class="form-control @error('sigla') is-invalid @enderror" name='sigla' id="sigla" 
-                            placeholder="Digite uma sigla" value="{{ old('sigla') }}">
-                            @error('sigla')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="phone">Telefone</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                 name='phone' id="phone"
+                                placeholder="Digite um telefone" value="{{ old('phone') }}">
+                                @error('phone')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
 
-                    <div class="form-group">
-                        <label for="organ_id">Órgão</label>
-                        <select class="js-basic form-control" name="organ_id">
-                            <option value="">Selecione</option>
-                            @foreach($organs as $organ)
-                                <option value="{{ $organ->id }}">{{ $organ->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('organ_id')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                name='email' id="email"
+                                placeholder="Digite um email" value="{{ old('email') }}">
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
 
-                    <div class="form-group">
-                        <label for="phone">Telefone</label>
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror"
-                             name='phone' id="phone" 
-                            placeholder="Digite um telefone" value="{{ old('phone') }}">
-                            @error('phone')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                            name='email' id="email" 
-                            placeholder="Digite um email" value="{{ old('email') }}">
-                            @error('email')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                    </div>
-
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
-                        <input type="text" class="form-control @error('descricao') is-invalid @enderror" 
+                        <input type="text" class="form-control @error('descricao') is-invalid @enderror"
                             name="descricao" id="descricao" placeholder="Digite a descrição" value="{{ old('descricao') }}">
                             @error('descricao')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                     </div>
-                    
+
                 </div>
 
                 <div class="card-footer">
