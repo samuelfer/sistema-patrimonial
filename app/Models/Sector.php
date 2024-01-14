@@ -12,12 +12,12 @@ class Sector extends Model
 {
     use HasFactory, LogsActivity;
 
-    protected $fillable = ['name', 'sigla', 'status', 'organ_id', 'description'];
+    protected $fillable = ['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'sigla', 'status', 'organ_id', 'description'])
+        ->logOnly(['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email'])
         ->dontSubmitEmptyLogs();
     }
 

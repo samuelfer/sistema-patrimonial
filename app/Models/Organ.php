@@ -14,12 +14,12 @@ class Organ extends Model
 {
     use HasFactory, LogsActivity;
 
-    protected $fillable = ['name', 'sigla', 'description', 'management_unit_id', 'address', 'status'];
+    protected $fillable = ['name', 'sigla', 'description', 'management_unit_id', 'address', 'status', 'phone', 'email'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'sigla', 'description', 'management_unit_id', 'address', 'status'])
+        ->logOnly(['name', 'sigla', 'description', 'management_unit_id', 'address', 'status', 'phone', 'email'])
         ->dontSubmitEmptyLogs();
     }
 

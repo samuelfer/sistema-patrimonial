@@ -37,8 +37,38 @@
                         <label for="cod">Código</label>
                         <input type="text" class="form-control @error('cod') is-invalid @enderror" 
                             value="{{$unit->cod}}" name='cod' id="cod" 
-                            placeholder="Digite um código" value="{{ old('cod') }}" required>
+                            placeholder="Digite um código" value="{{ old('cod') }}">
                             @error('cod')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                            value="{{$unit->phone}}" name='phone' id="phone" 
+                            placeholder="Digite um telefone" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cnpj">Cnpj</label>
+                        <input type="text" class="form-control @error('cnpj') is-invalid @enderror" 
+                            value="{{$unit->cnpj}}"name='cnpj' id="cnpj" 
+                            placeholder="Digite um cnpj" value="{{ old('cnpj') }}" required>
+                            @error('cnpj')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+
+                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                            value="{{$unit->email}}"name='email' id="email" 
+                            placeholder="Digite um email" value="{{ old('email') }}">
+                            @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                     </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdateManagementUnit extends FormRequest
+class StoreUpdateOffice extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,19 +22,14 @@ class StoreUpdateManagementUnit extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required|min:3|max:255|unique:management_units',
-            'cod'  => 'required|min:3|max:255|unique:management_units',
-            'description' => 'max:255',
-            'cnpj' => 'numeric|unique:management_units',
+            'name' => 'required|min:3|max:255|unique:offices',
             'phone' => 'numeric',
             'email' => 'email'
         ];
 
         if ($this->method() === 'PUT') {
             $rules = [
-                'name' => 'required|min:3|max:255|unique:management_units,name,'.$this->id.',id',
-                'cod'  => 'required|min:3|max:255|unique:management_units,cod,'.$this->id.',id',
-                'cnpj'  => 'numeric|unique:management_units,cnpj,'.$this->id.',id',
+                'name' => 'required|min:3|max:255|unique:offices,name,'.$this->id.',id',
             ];
         }
 
@@ -48,13 +43,6 @@ class StoreUpdateManagementUnit extends FormRequest
             'name.min' => 'O tamanho mínimo do nome é de 3 caracteres',
             'name.max' => 'O tamanho máximo do nome é de 255 caracteres',
             'name.unique' => 'Esse nome já está em uso',
-            'cod.required' => 'O código é obrigatório',
-            'cod.min' => 'O tamanho mínimo do código é de 3 caracteres',
-            'cod.max' => 'O tamanho máximo do código é de 255 caracteres',
-            'cod.unique' => 'Esse código já está em uso',
-            'description.max' => 'O tamanho máximo permitido de 255 caracteres',
-            'cnpj.unique' => 'Esse cnpj já está em uso',
-            'cnpj.numeric' => 'O cnpj precisa ter apenas números',
             'phone.numeric' => 'O telefone precisa ter apenas números',
             'email.email' => 'O email precisa ser válido',
         ];

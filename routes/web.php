@@ -90,5 +90,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/setores/{id}', [App\Http\Controllers\SectorController::class, 'update'])->name('sectors.update');
    Route::delete('/setores/{id}', [App\Http\Controllers\SectorController::class, 'destroy'])->name('sectors.delete');
 
+   ############## CARGO E FUNCAO ###############
+   Route::get('/cargos', [App\Http\Controllers\OfficeController::class, 'index'])->name('offices.view');
+   Route::get('/cargos/cadastro', [App\Http\Controllers\OfficeController::class, 'create'])->name('offices.create');
+   Route::get('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'edit'])->name('offices.edit');
+   Route::post('/cargos', [App\Http\Controllers\OfficeController::class, 'store'])->name('offices.store');
+   Route::put('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'update'])->name('offices.update');
+   Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.delete');
+
 });
 

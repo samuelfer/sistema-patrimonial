@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class ManagementUnit extends Model
+class Office extends Model
 {
     use HasFactory, LogsActivity;
 
-    protected $fillable = ['name', 'cod', 'description', 'cnpj', 'phone', 'email'];
+    protected $fillable = ['name', 'status'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'cod', 'description', 'cnpj', 'phone', 'email'])
+        ->logOnly(['name', 'status'])
         ->dontSubmitEmptyLogs();
     }
 }
