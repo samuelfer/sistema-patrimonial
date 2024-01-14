@@ -24,7 +24,8 @@ class StoreUpdateOrgan extends FormRequest
         $rules = [
             'name' => 'required|min:3|max:255|unique:organs',
             'management_unit_id' => 'required',
-            'description' => 'max:255'
+            'description' => 'max:255',
+            'status' => 'required|boolean'
         ];
 
         if ($this->sigla != null) {
@@ -40,7 +41,7 @@ class StoreUpdateOrgan extends FormRequest
 
             if ($this->sigla != null) {
                 $rules = [
-                    'sigla'=> 'min:2|max:255|unique:organs,sigla,'.$this->sigla.',sigla',
+                    'sigla'=> 'min:2|max:255|unique:organs,sigla,'.$this->id.',id',
                 ];
             }
         }
@@ -61,6 +62,8 @@ class StoreUpdateOrgan extends FormRequest
             'sigla.max' => 'O tamanho máximo do sigla é de 255 caracteres',
             'sigla.unique' => 'Esse sigla já está em uso',
             'sigla.max' => 'O tamanho máximo permitido de 255 caracteres',
+            'status.required' => 'O status é obrigatório',
+            'status.boolean' => 'O status precisa ser Sim ou Não'
         ];
     }
 }

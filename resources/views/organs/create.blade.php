@@ -52,6 +52,8 @@
                         @enderror
                     </div>
 
+                    <input type="hidden" name="status" value=1>
+
                     <div class="form-group">
                         <label for="address">Endereço</label>
                         <input type="address" class="form-control @error('address') is-invalid @enderror" 

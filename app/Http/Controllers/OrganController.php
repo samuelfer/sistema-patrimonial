@@ -33,6 +33,7 @@ class OrganController extends Controller
     {
         try {
             $data = $request->all();
+            $data['status'] = 1;
             Organ::create($data);
             return redirect()->route('organs.view')->with('success', 'Registro salvo com sucesso!');
 
@@ -69,10 +70,18 @@ class OrganController extends Controller
     public function update(StoreUpdateOrgan $request, string $id)
     {
         try {
-            $sector = Organ::find($id);
+            $organ = Organ::find($id);
+            if (!$organ) {
+                return redirect()->route('organs.view')->with('error', 'Registro não encontrado!');
+            }
+           
             $data = $request->all();
+           
+            if ($organ->sector()->count() > 0) {
+                return redirect()->back()->with('error', 'Esse registro não pode ser inativado.');
+            }
 
-            $sector->update($data);
+            $organ->update($data);
 
             return redirect()->route('organs.view')->with('success', 'Registro salvo com sucesso!');
             
@@ -86,16 +95,14 @@ class OrganController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!Auth::user()->is_admin) {
-            return redirect()->route('sectors.view')->with('error', 'O usuário logado não pode excluir órgãos!');
-        }
-
         $organ = Organ::find($id);
      
         if (!$organ) {
-            return redirect()->back()->with('error', 'Ocorreu um erro ao tentar excluir o registro.');
+            return redirect()->back()->with('error', 'Registro não encontrado.');
         }
-
+        if ($organ->sector()->count() > 0) {
+            return redirect()->back()->with('error', 'Esse registro não pode ser excluído.');
+        }
         $organ->delete();
         return redirect()->route('sectors.view')->with('success', 'Registro excluído com sucesso!');
     }
