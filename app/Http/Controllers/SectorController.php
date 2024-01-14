@@ -32,6 +32,7 @@ class SectorController extends Controller
     {
         try {
             $data = $request->all();
+            $data['status'] = 1;
             Sector::create($data);
             return redirect()->route('sectors.view')->with('success', 'Registro salvo com sucesso!');
 
