@@ -50,8 +50,8 @@ class OfficeController extends Controller
      */
     public function edit(string $id)
     {
-        $sector = Office::find($id);
-        if (!$sector) {
+        $office = Office::find($id);
+        if (!$office) {
             return redirect()->route('offices.view')->with('error', 'Registro não encontrado!');
         }
         return view('offices.edit', compact('office'));
@@ -64,10 +64,10 @@ class OfficeController extends Controller
     {
         try {
            
-            $sector = Office::find($id);
+            $office = Office::find($id);
             $data = $request->all();
 
-            $sector->update($data);
+            $office->update($data);
 
             return redirect()->route('offices.view')->with('success', 'Registro salvo com sucesso!');
             
