@@ -24,13 +24,15 @@ class StoreUpdateManagementUnit extends FormRequest
         $rules = [
             'name' => 'required|min:3|max:255|unique:management_units',
             'cod'  => 'required|min:3|max:255|unique:management_units',
-            'description' => 'max:255'
+            'description' => 'max:255',
+            'cnpj' => 'numeric|cnpj|unique:management_units'
         ];
 
         if ($this->method() === 'PUT') {
             $rules = [
                 'name' => 'required|min:3|max:255|unique:management_units,name,'.$this->id.',id',
                 'cod'  => 'required|min:3|max:255|unique:management_units,cod,'.$this->cod.',cod',
+                'cnpj'  => 'numeric|cnpj|unique:management_units,cnpj,'.$this->cod.',cnpj',
             ];
         }
 
