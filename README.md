@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 ## Sistema para controle de patrimônio com Laravel 10 - Template AdminLTE 3
@@ -12,3 +13,6 @@ Esta é uma aplicação para controle de patrimônio
 - php artisan db:seed para popular as tabelas com dados iniciais.
 - Acessar com o email: admin@gmail.com e senha: 123456789. 
 - Obs: Para usar a aplicação você precisa ter o php e composer instalado
+=======
+# sistema-patrimonial-copy
+>>>>>>> 507bc0201564cb24d4577f72055013d19d31345c
