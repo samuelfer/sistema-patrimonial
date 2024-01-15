@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('cpf')->unique();
             $table->string('phone')->nullable();
             $table->string('rg')->nullable();
-            $table->string('matricula')->unique();
+            $table->string('matricula')->nullable();
             $table->foreignIdFor(\App\Models\Office::class)->onDelete('CASCADE');
-            $table->boolean('status')->default(1)->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

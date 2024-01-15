@@ -56,7 +56,7 @@
                         <div class="form-group col-md-4">
                             <label for="phone">Telefone</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror" name='phone'
-                                id="phone" placeholder="Digite um telefone" value="{{  $people->phone }}" required>
+                                id="phone" placeholder="Digite um telefone" value="{{  $people->phone }}">
                             @error('phone')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -64,7 +64,7 @@
                         <div class="form-group col-md-4">
                             <label for="rg">Rg</label>
                             <input type="text" class="form-control @error('rg') is-invalid @enderror" name='rg'
-                                id="rg" placeholder="Digite um Rg" value="{{$people->rg }}" required>
+                                id="rg" placeholder="Digite um Rg" value="{{$people->rg }}">
                             @error('rg')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -72,37 +72,38 @@
                         <div class="form-group col-md-4">
                             <label for="matricula">Matricula</label>
                             <input type="text" class="form-control @error('matricula') is-invalid @enderror" name='matricula'
-                                id="matricula" placeholder="Digite uma Matrícula" value="{{ $people->matricula }}" required>
+                                id="matricula" placeholder="Digite uma matrícula" value="{{ $people->matricula }}" >
                             @error('matricula')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="office_id">Selecione o Cargo</label>
-                        <select class="js-basic form-control" name="office_id">
-                            <option value="">Selecione</option>
-                            @foreach($offices as $office)
-                                <option value="{{ $office->id }}">{{ $office->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('office_id')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="office_id">Selecione o Cargo</label>
+                            <select class="js-basic form-control" name="office_id">
+                                <option value="">Selecione</option>
+                                @foreach($offices as $office)
+                                    <option  @if ($office->id == $people->office_id) selected @endif value="{{ $office->id }}">{{ $office->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('office_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="status">Status</label>
+                            <select class="js-basic form-control" name="status">
+                                <option value="">Selecione</option>
+                                <option value="1" @if ($people->status == 1) selected @endif>Ativo</option>
+                                <option value="0" @if ($people->status == 0) selected @endif>Inativo</option>
+                            </select>
+                            @error('status')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="js-basic form-control" name="status">
-                            <option value="">Selecione</option>
-                            <option value="1" @if ($people->status == 1) selected @endif>Ativo</option>
-                            <option value="0" @if ($people->status == 0) selected @endif>Inativo</option>
-                        </select>
-                        @error('status')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                 </div>
 
                 <div class="card-footer">
