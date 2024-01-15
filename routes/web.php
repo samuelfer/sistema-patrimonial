@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +53,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::put('/usuarios/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::delete('/usuarios/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/meu-perfil/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
-   
-   
+
+
     Route::post('/users.save-image', [App\Http\Controllers\Admin\UserController::class, 'saveImage'])->name('users.save-image');
 
 
@@ -97,6 +98,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::post('/cargos', [App\Http\Controllers\OfficeController::class, 'store'])->name('offices.store');
    Route::put('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'update'])->name('offices.update');
    Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.destroy');
+
+   ############## PESSOAS ###############
+   Route::get('/peoples', [App\Http\Controllers\PeopleController::class, 'index'])->name('peoples.view');
+   Route::get('/peoples/cadastro', [App\Http\Controllers\PeopleController::class, 'create'])->name('peoples.create');
+   Route::get('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'edit'])->name('peoples.edit');
+   Route::post('/peoples', [App\Http\Controllers\PeopleController::class, 'store'])->name('peoples.store');
+   Route::put('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'update'])->name('peoples.update');
+   Route::delete('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'destroy'])->name('peoples.destroy');
 
 });
 
