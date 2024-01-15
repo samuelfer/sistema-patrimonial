@@ -347,6 +347,12 @@ return [
             'icon'        => 'far fas fa-th',
             'can'         => 'managements.view',
         ],
+        [
+            'text'        => 'Pessoas',
+            'route'       => 'peoples.view',
+            'icon'        => 'far fas fa-user',
+            'can'         => 'peoples.view',
+        ],
         ['header' => 'Configurações'],
         [
             'text'    => 'Administração',
