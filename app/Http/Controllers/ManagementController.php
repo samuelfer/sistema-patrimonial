@@ -27,12 +27,24 @@ class ManagementController extends Controller
     {
         try {
             $data = $request->all();
+
+            $data['start'] = $this->checkValidateDate($data['start']);
+            $data['end'] = $this->checkValidateDate($data['end']);
+            if ( $data['start'] == null ||  $data['start'] == null) {
+                return redirect()->back()->with('error', 'Por favor, verifique as datas informadas!');
+            }
+
+            if ($this->isAllReadyRegistered($data['start'], $data['end']) > 0) 
+            {
+                return redirect()->back()->with('error', 'Gestão já cadastrada!');
+            }
+           
             $data['status'] = 1;
             Management::create($data);
             return redirect()->route('managements.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!'.$e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
         }
       
     }
@@ -67,6 +79,8 @@ class ManagementController extends Controller
             $management = Management::find($id);
             $data = $request->all();
 
+            $data['start'] = \Carbon\Carbon::parse( $data['start'])->format('Y-m-d');
+            $data['end'] = \Carbon\Carbon::parse( $data['end'])->format('Y-m-d');
             $management->update($data);
 
             return redirect()->route('managements.view')->with('success', 'Registro salvo com sucesso!');
@@ -88,6 +102,20 @@ class ManagementController extends Controller
         }
 
         $management->delete();
-        return redirect()->route('offices.view')->with('success', 'Registro excluído com sucesso!');
+        return redirect()->route('managements.view')->with('success', 'Registro excluído com sucesso!');
+    }
+
+    private function checkValidateDate($date) {
+        $tempDate = explode('/', $date);
+        if (checkdate($tempDate[1], $tempDate[0], $tempDate[2])) {
+            return "{$tempDate[2]}" . "-" . "{$tempDate[1]}" . "-" . "{$tempDate[0]}";
+        }
+        return null;
+    }
+
+    private function isAllReadyRegistered($dateStart, $dateEnd) 
+    {
+        return Management::where('start', $dateStart)
+        ->orWhere('end', $dateEnd)->count();
     }
 }

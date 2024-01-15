@@ -20,26 +20,27 @@
             <form action="{{route('managements.store')}}" method="post" >
                 @csrf 
                 <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="start">Início</label>
+                            <input type="text" class="form-control data @error('start') is-invalid @enderror" name='start' id="start" 
+                                placeholder="Início da gestão" value="{{ old('start') }}" required>
+                                @error('start')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
 
-                    <div class="form-group">
-                        <label for="start">Início</label>
-                        <input type="text" class="form-control @error('start') is-invalid @enderror" name='start' id="start" 
-                            placeholder="Digite início" value="{{ old('start') }}" required>
-                            @error('start')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        <div class="form-group col-md-3">
+                            <label for="end">Fim</label>
+                            <input type="text" class="form-control data @error('end') is-invalid @enderror" name='end' id="end" 
+                                placeholder="Fim da gestão" value="{{ old('end') }}" required>
+                                @error('end')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
+                        <input type="hidden" name="status" value="1">
+
                     </div>
-
-                    <div class="form-group">
-                        <label for="end">Fim</label>
-                        <input type="text" class="form-control @error('end') is-invalid @enderror" name='end' id="end" 
-                            placeholder="Digite o fim" value="{{ old('end') }}" required>
-                            @error('end')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                    </div>
-                    <input type="hidden" name="status" value="1">
-
                 </div>
 
                 <div class="card-footer">
@@ -57,11 +58,32 @@
 @stop
 
 @section('js')
-
+@section('plugins.DateRangePicker', true)
     <script>
-
         $(function () {
-            $('#datetimepicker1').datetimepicker();
+            const agora = moment(new Date());
+            $('input[name="start"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2020,
+                maxYear: parseInt(moment().add(10, "y").format('YYYY'),10),
+                locale: {
+                    format: 'DD/MM/YYYY',
+                }
+            });
+                
+            $('input[name="end"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2020,
+                maxYear: parseInt(moment().add(20, "y").format('YYYY'),10),
+                locale: {
+                    format: 'DD/MM/YYYY',
+                }
+            });
         });
-    </script>
+       
+      
+        </script>
+    
 @stop        

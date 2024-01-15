@@ -36,9 +36,9 @@
 
                         @forelse($managements as $management)
                         <tr>
-                            <td>{{ $office->id}}</td>
-                            <td>{{ $management->start}}</td>
-                            <td>{{ $management->end}}</td>
+                            <td>{{ $management->id }}</td>
+                            <td>{{ $management->start->format('d/m/Y') }}</td>
+                            <td>{{ $management->end->format('d/m/Y') }}</td>
                             <td>{{ $management->status == 1 ? 'Sim' : 'Não' }}</td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('managements.update')
@@ -47,7 +47,7 @@
                                     </a>
                                 @endcan
                                 @can('managements.destroy')
-                                <form action="{{route('managements.delete', $management->id)}}" method="post" class="delete-managements">
+                                <form action="{{route('managements.destroy', $management->id)}}" method="post" class="delete-managements">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>

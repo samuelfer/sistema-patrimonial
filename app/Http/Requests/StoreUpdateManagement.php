@@ -21,6 +21,7 @@ class StoreUpdateManagement extends FormRequest
      */
     public function rules(): array
     {
+
         $rules = [
             'start' => 'required',
             'end' => 'required',
@@ -28,8 +29,8 @@ class StoreUpdateManagement extends FormRequest
 
         if ($this->method() === 'PUT') {
             $rules = [
-                'start' => 'required|unique:managements,start,'.$this->id.',id',
-                'end' => 'required|unique:managements,end,'.$this->id.',id',
+                'start' => 'required',
+                'end' => 'required',
             ];
         }
 
@@ -40,7 +41,7 @@ class StoreUpdateManagement extends FormRequest
     {
         return [
             'start.required' => 'O início da gestão é obrigatório',
-            'end.min' => 'O fim da gestão é obrigatório',
+            'end.required' => 'O fim da gestão é obrigatório',
         ];
     }
 }

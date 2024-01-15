@@ -11,7 +11,14 @@ class Management extends Model
 {
     use HasFactory, LogsActivity;
 
+    protected $table = 'managements';
+
     protected $fillable = ['start', 'end', 'status'];
+
+    protected $casts = [
+        'start' => 'datetime:Y-m-d',
+        'end'   => 'datetime:Y-m-d',
+    ];
 
     public function getActivitylogOptions(): LogOptions
     {
