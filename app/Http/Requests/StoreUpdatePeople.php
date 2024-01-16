@@ -33,7 +33,7 @@ class StoreUpdatePeople extends FormRequest
             'cpf'=>'required|unique:peoples',
             'phone'=>'numeric|required|unique:peoples',
             'rg'=>'unique:peoples',
-            'matricula'=>'unique:peoples|numeric',
+            'matricula'=>'unique:peoples|numeric|required',
             'office_id'=>'required',
         ];
 
