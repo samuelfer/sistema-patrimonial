@@ -116,5 +116,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'update'])->name('peoples.update');
    Route::delete('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'destroy'])->name('peoples.destroy');
 
+
+   ############## RESPONSAVEL DEPARTAMENTO ###############
+   Route::get('/responsavel-departamentos', [App\Http\Controllers\DepartmentResponsibleController::class, 'index'])->name('departmentsResponsibles.view');
+   Route::get('/responsavel-departamentos/cadastro', [App\Http\Controllers\DepartmentResponsibleController::class, 'create'])->name('departmentsResponsibles.create');
+   Route::get('/responsavel-departamentos/{id}', [App\Http\Controllers\DepartmentResponsibleController::class, 'edit'])->name('departmentsResponsibles.edit');
+   Route::post('/responsavel-departamentos', [App\Http\Controllers\DepartmentResponsibleController::class, 'store'])->name('departmentsResponsibles.store');
+   Route::put('/responsavel-departamentos/{id}', [App\Http\Controllers\DepartmentResponsibleController::class, 'update'])->name('departmentsResponsibles.update');
+   Route::delete('/responsavel-departamentos/{id}', [App\Http\Controllers\DepartmentResponsibleController::class, 'destroy'])->name('departmentsResponsibles.destroy');
+
 });
 

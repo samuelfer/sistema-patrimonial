@@ -353,6 +353,12 @@ return [
             'icon'        => 'far fas fa-user',
             'can'         => 'peoples.view',
         ],
+        [
+            'text'        => 'Responsável Departamento',
+            'route'       => 'departmentsResponsibles.view',
+            'icon'        => 'far fas fa-th',
+            'can'         => 'departmentsResponsibles.view',
+        ],
         ['header' => 'Configurações'],
         [
             'text'    => 'Administração',
