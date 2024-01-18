@@ -51,7 +51,7 @@
                                     </a>
                                 @endcan
                                 @can('organs.destroy')
-                                <form action="{{route('organs.delete', $organ->id)}}" method="post" class="delete-organs">
+                                <form action="{{route('organs.destroy', $organ->id)}}" method="post" class="delete-organs">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
