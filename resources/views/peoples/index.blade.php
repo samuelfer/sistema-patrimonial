@@ -34,6 +34,7 @@
                                         <th>NOME</th>
                                         <th>EMAIL</th>
                                         <th>STATUS</th>
+                                        <th>CARGO</th>
                                         <th>MATRÍCULA</th>
                                         <th style="width: 20px;">AÇÕES</th>
                                     </tr>
@@ -45,13 +46,13 @@
                                         <td>{{ $people->name }}</td>
                                         <td>{{ $people->email }}</td>
                                         <td>{{ $people->status == 1 ? 'Sim' : 'Não'}}</td>
+                                        <td>{{ $people->office->name ?? 'N/A' }}</td>
                                         <td>{{ $people->matricula }}</td>
                                         <td style="display: inline-block; width: 110px;">
                                             @can('peoples.update')<a href="{{route('peoples.edit',[$people->id])}}"
                                                 class="btn btn-sm btn-success float-left">Editar</a>@endcan
                                             @can('peoples.destroy')
-                                            <form action="{{route('peoples.destroy', $people->id)}}" method="post"
-                                                class="delete-people">
+                                            <form action="{{route('peoples.destroy', $people->id)}}" method="post" class=".delete-people">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
@@ -103,7 +104,6 @@
 
     <script>
     $(function() {
-
         $("#list-peoples").DataTable({
             "responsive": true,
             "lengthChange": false,
@@ -119,25 +119,26 @@
                 "url": '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
             },
         });
-    });
 
-    $('.delete-people').submit(function(ev) {
-        ev.preventDefault();
+        $('.delete-people').submit(function(ev) {
+            ev.preventDefault();
 
-        Swal.fire({
-            title: "Tem certeza que deseja excluir?",
-            text: "O registro será excluído!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Sim, excluir!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
+            Swal.fire({
+                title: "Tem certeza que deseja excluir?",
+                text: "O registro será excluído!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, excluir!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
         });
     });
-    </script>
+</script>
+
 
     @stop
