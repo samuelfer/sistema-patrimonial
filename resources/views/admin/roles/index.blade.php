@@ -46,7 +46,7 @@
                                             @can('roles.update')<a href="{{route('roles.edit',[$role->id])}}"
                                                 class="btn btn-sm btn-success float-left">Editar</a>@endcan
                                             @can('roles.delete')
-                                            <form action="{{route('roles.delete', $role->id)}}" method="post"
+                                            <form action="{{route('roles.destroy', $role->id)}}" method="post"
                                                 class="delete-role">
                                                 @csrf
                                                 @method('DELETE')

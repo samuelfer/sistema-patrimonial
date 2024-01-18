@@ -34,16 +34,12 @@ class PeopleController extends Controller
      * Store a newly created resource in storage.
      */
 
-
-
-
     public function store(StoreUpdatePeople $request)
     {
         try {
 
             $data = $request->all();
             $data['status'] = 1;
-            //dd($data);
             People::query()->create($data);
             return redirect()->route('peoples.view')->with('success', 'Registro salvo com sucesso!');
 

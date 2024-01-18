@@ -344,7 +344,7 @@ return [
         [
             'text'        => 'Pessoas',
             'route'       => 'peoples.view',
-            'icon'        => 'far fas fa-user',
+            'icon'        => 'far fas  fa-users',
             'can'         => 'peoples.view',
         ],
         ['header' => 'Configurações'],

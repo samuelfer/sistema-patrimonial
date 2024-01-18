@@ -35,6 +35,7 @@ class StoreUpdatePeople extends FormRequest
             'rg'=>'unique:peoples',
             'matricula'=>'unique:peoples|numeric|required',
             'office_id'=>'required',
+
         ];
 
         if ($this->method() === 'PUT') {
