@@ -99,15 +99,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'update'])->name('offices.update');
    Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.destroy');
 
-
-   ############## GESTOES ###############
-   Route::get('/gestoes', [App\Http\Controllers\ManagementController::class, 'index'])->name('managements.view');
-   Route::get('/gestoes/cadastro', [App\Http\Controllers\ManagementController::class, 'create'])->name('managements.create');
-   Route::get('/gestoes/{id}', [App\Http\Controllers\ManagementController::class, 'edit'])->name('managements.edit');
-   Route::post('/gestoes', [App\Http\Controllers\ManagementController::class, 'store'])->name('managements.store');
-   Route::put('/gestoes/{id}', [App\Http\Controllers\ManagementController::class, 'update'])->name('managements.update');
-   Route::delete('/gestoes/{id}', [App\Http\Controllers\ManagementController::class, 'destroy'])->name('managements.destroy');
-
    ############## PESSOAS ###############
    Route::get('/peoples', [App\Http\Controllers\PeopleController::class, 'index'])->name('peoples.view');
    Route::get('/peoples/cadastro', [App\Http\Controllers\PeopleController::class, 'create'])->name('peoples.create');
@@ -116,14 +107,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'update'])->name('peoples.update');
    Route::delete('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'destroy'])->name('peoples.destroy');
 
+   ############## PESSOAS ###############
+   Route::get('/unidade-gestora-responsavel', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'index'])->name('management_units_responsible.view');
+   Route::get('/unidade-gestora-responsavel/cadastro', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'create'])->name('management_units_responsible.create');
+   Route::get('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'edit'])->name('management_units_responsible.edit');
+   Route::post('/unidade-gestora-responsavel', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'store'])->name('management_units_responsible.store');
+   Route::put('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'update'])->name('management_units_responsible.update');
+   Route::delete('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'destroy'])->name('management_units_responsible.destroy');
 
-   ############## RESPONSAVEL DEPARTAMENTO ###############
-   Route::get('/responsavel-departamentos', [App\Http\Controllers\DepartmentResponsibleController::class, 'index'])->name('departmentsResponsibles.view');
-   Route::get('/responsavel-departamentos/cadastro', [App\Http\Controllers\DepartmentResponsibleController::class, 'create'])->name('departmentsResponsibles.create');
-   Route::get('/responsavel-departamentos/{id}', [App\Http\Controllers\DepartmentResponsibleController::class, 'edit'])->name('departmentsResponsibles.edit');
-   Route::post('/responsavel-departamentos', [App\Http\Controllers\DepartmentResponsibleController::class, 'store'])->name('departmentsResponsibles.store');
-   Route::put('/responsavel-departamentos/{id}', [App\Http\Controllers\DepartmentResponsibleController::class, 'update'])->name('departmentsResponsibles.update');
-   Route::delete('/responsavel-departamentos/{id}', [App\Http\Controllers\DepartmentResponsibleController::class, 'destroy'])->name('departmentsResponsibles.destroy');
-
+   
 });
 

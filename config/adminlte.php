@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Manage-</b>Patrimony',
+    'logo' => '<b>SIGES-</b>Pat',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -324,6 +324,12 @@ return [
             'can'         => 'management_units.view',
         ],
         [
+            'text'        => 'Responsável Unidade gestora',
+            'route'       => 'management_units_responsible.view',
+            'icon'        => 'far fas fa-columns',
+            'can'         => 'management_units_responsible.view',
+        ],
+        [
             'text'        => 'Órgãos',
             'route'       => 'organs.view',
             'icon'        => 'far fas fa-table',
@@ -342,22 +348,10 @@ return [
             'can'         => 'offices.view',
         ],
         [
-            'text'        => 'Gestões',
-            'route'       => 'managements.view',
-            'icon'        => 'far fas fa-th',
-            'can'         => 'managements.view',
-        ],
-        [
             'text'        => 'Pessoas',
             'route'       => 'peoples.view',
             'icon'        => 'far fas fa-user',
             'can'         => 'peoples.view',
-        ],
-        [
-            'text'        => 'Responsável Departamento',
-            'route'       => 'departmentsResponsibles.view',
-            'icon'        => 'far fas fa-th',
-            'can'         => 'departmentsResponsibles.view',
         ],
         ['header' => 'Configurações'],
         [
