@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdatePeople;
 use App\Models\Office;
 use App\Models\People;
-use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class PeopleController extends Controller
 {
@@ -19,7 +15,7 @@ class PeopleController extends Controller
     public function index()
     {
         $peoples = People::with('office')->paginate(10);
-        return view('peoples.index', ['peoples'=>$peoples]);
+        return view('peoples.index', compact('peoples'));
     }
 
     /**
@@ -44,7 +40,6 @@ class PeopleController extends Controller
             return redirect()->route('peoples.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-           dd($e);
             return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
         }
     }
@@ -61,11 +56,11 @@ class PeopleController extends Controller
      */
     public function edit(string $id)
     {
-        $offices = Office::all();
-        $people=People::find($id);
+        $people = People::find($id);
         if(!$people){
             return redirect()->route('peoples.view')->with('error', 'Registro não encontrado!');
         }
+        $offices = Office::all();
         return view('peoples.edit',  compact('people', 'offices'));
     }
 
@@ -76,7 +71,7 @@ class PeopleController extends Controller
     {
         try {
 
-            $people=People::find($id);
+            $people = People::find($id);
             $data = $request->all();
             $people->update($data);
             return redirect()->route('peoples.view')->with('success', 'Registro salvo com sucesso!');

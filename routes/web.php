@@ -107,5 +107,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'update'])->name('peoples.update');
    Route::delete('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'destroy'])->name('peoples.destroy');
 
+   ############## PESSOAS ###############
+   Route::get('/unidade-gestora-responsavel', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'index'])->name('management_units_responsible.view');
+   Route::get('/unidade-gestora-responsavel/cadastro', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'create'])->name('management_units_responsible.create');
+   Route::get('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'edit'])->name('management_units_responsible.edit');
+   Route::post('/unidade-gestora-responsavel', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'store'])->name('management_units_responsible.store');
+   Route::put('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'update'])->name('management_units_responsible.update');
+   Route::delete('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'destroy'])->name('management_units_responsible.destroy');
+
+   
 });
 

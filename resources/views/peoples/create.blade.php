@@ -55,23 +55,24 @@
                         <div class="form-group col-md-4">
                             <label for="phone">Telefone</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror" name='phone'
+
                                 id="phone" placeholder="Digite um nome" value="{{ $people->phone??null }}" required>
-                            @error('phone')
+                                                    @error('phone')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="rg">Rg</label>
+                            <label for="rg">RG</label>
                             <input type="text" class="form-control @error('rg') is-invalid @enderror" name='rg'
-                                id="rg" placeholder="Digite um nome" value="{{ old('rg') }}" required>
+                                id="rg" placeholder="Digite um rg" value="{{ old('rg') }}">
                             @error('rg')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="matricula">Matricula</label>
+                            <label for="matricula">Matrícula</label>
                             <input type="text" class="form-control @error('matricula') is-invalid @enderror" name='matricula'
-                                id="matricula" placeholder="Digite um nome" value="{{ old('matricula') }}" required>
+                                id="matricula" placeholder="Digite uma matrícula" value="{{ old('matricula') }}">
                             @error('matricula')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror

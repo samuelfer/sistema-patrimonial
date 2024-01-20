@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de Setores')
+@section('title', 'Lista de Gestões')
 
 @section('content_header')
 <h3></h3>
@@ -12,9 +12,9 @@
     <div class="card-header">
         @include('shared.success-message')
         @include('shared.error-message')
-        <h3 class="card-title">Listagem de Órgãos</h3>
-            @can('management_units.create')
-                <a href="{{route('organs.create')}}" class="btn btn-sm btn-success float-right">NOVO ÓRGÃO</a>
+        <h3 class="card-title">Listagem de Gestões</h3>
+            @can('offices.create')
+                <a href="{{route('managements.create')}}" class="btn btn-sm btn-success float-right">NOVA GESTÃO</a>
             @endcan
     </div>
 
@@ -23,35 +23,31 @@
             
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="list-organs" class="table table-bordered table-striped dataTable dtr-inline"
-                        aria-describedby="list-organs">
+                    <table id="list-managements" class="table table-bordered table-striped dataTable dtr-inline"
+                        aria-describedby="list-managements">
                         <thead>
                             <th>ID</th>
-                            <th>NOME</th>
-                            <th>SIGLA</th>
-                            <th>UNID. GESTORA</th>
-                            <th>ENDEREÇO</th>
+                            <th>INÍCIO</th>
+                            <th>FIM</th>
                             <th>ATIVO</th>
                             <th style="width: 20px;">AÇÕES</th>
                         </thead>
                         <tbody>
 
-                        @forelse($organs as $organ)
+                        @forelse($managements as $management)
                         <tr>
-                            <td>{{ $organ->id }}</td>
-                            <td>{{ $organ->name }}</td>
-                            <td>{{ $organ->sigla }}</td>
-                            <td>{{ $organ->managementUnit->name }}</td>
-                            <td>{{ $organ->address }}</td>
-                            <td>{{ $organ->status == 1 ? 'Sim' : 'Não' }}</td>
+                            <td>{{ $management->id }}</td>
+                            <td>{{ $management->start->format('d/m/Y') }}</td>
+                            <td>{{ $management->end->format('d/m/Y') }}</td>
+                            <td>{{ $management->status == 1 ? 'Sim' : 'Não' }}</td>
                             <td style="display: inline-block; width: 110px;">
-                                @can('organs.update')
-                                    <a href="{{route('organs.edit',[$organ->id])}}"
+                                @can('managements.update')
+                                    <a href="{{route('managements.edit',[$management->id])}}"
                                         class="btn btn-sm btn-success float-left">Editar
                                     </a>
                                 @endcan
-                                @can('organs.destroy')
-                                <form action="{{route('organs.destroy', $organ->id)}}" method="post" class="delete-organs">
+                                @can('managements.destroy')
+                                <form action="{{route('managements.destroy', $management->id)}}" method="post" class="delete-managements">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
@@ -62,7 +58,7 @@
 
                         @empty
                         <tr>
-                            <td colspan="5"> Ainda não há órgão cadastrado.</td>
+                            <td colspan="5"> Ainda não há Gestão cadastrada.</td>
                         </tr>
                         @endforelse
                     
@@ -86,7 +82,7 @@
 
         $(function () {
           
-            $("#list-organs").DataTable({
+            $("#list-offices").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "search": "Pesquisar",
                 "paginate": {
@@ -101,7 +97,7 @@
             });
         });
 
-        $('.delete-organs').submit(function(ev) {
+        $('.delete-managements').submit(function(ev) {
             ev.preventDefault();
 
             Swal.fire({

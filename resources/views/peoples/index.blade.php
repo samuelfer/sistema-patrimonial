@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Pessoas no sistema')
+@section('title', 'Pessoas')
 
 @section('content_header')
 <h3></h3>
@@ -17,7 +17,7 @@
             <div class="card-header">
                 <h3 class="card-title">Lista de Pessoas</h3>
                 @can('peoples.create')
-                <a href="{{route('peoples.create')}}" class="btn btn-sm btn-success float-right">Cadastrar nova pessoa</a>
+                <a href="{{route('peoples.create')}}" class="btn btn-sm btn-success float-right">NOVA PESSOA</a>
                 @endcan
             </div>
 
@@ -35,22 +35,18 @@
                                         <th>EMAIL</th>
                                         <th>STATUS</th>
                                         <th>CARGO</th>
-                                        <th>MATRICULA</th>
+                                        <th>MATRÍCULA</th>
                                         <th style="width: 20px;">AÇÕES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse($peoples as $people)
                                     <tr>
-                                        <td>{{ $people->id}}</td>
-                                        <td>{{ $people->name}}</td>
-                                        <td>{{ $people->email}}</td>
-                                        <td>
-                                            @if ($people->status == 1)Ativo @endif
-                                            @if($people->status==0) Inativo @endif
-                                         </td>
-                                         <td>{{ $people->office->name ?? 'N/A' }}</td>
-
+                                        <td>{{ $people->id }}</td>
+                                        <td>{{ $people->name }}</td>
+                                        <td>{{ $people->email }}</td>
+                                        <td>{{ $people->status == 1 ? 'Sim' : 'Não'}}</td>
+                                        <td>{{ $people->office->name ?? 'N/A' }}</td>
                                         <td>{{ $people->matricula }}</td>
                                         <td style="display: inline-block; width: 110px;">
                                             @can('peoples.update')<a href="{{route('peoples.edit',[$people->id])}}"
@@ -67,7 +63,7 @@
 
                                     @empty
                                     <tr>
-                                        <td colspan="5"> Ainda não há Usuários cadastrados.</td>
+                                        <td colspan="5"> Ainda não há pessoa cadastrada.</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
