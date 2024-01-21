@@ -107,7 +107,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'update'])->name('peoples.update');
    Route::delete('/peoples/{id}', [App\Http\Controllers\PeopleController::class, 'destroy'])->name('peoples.destroy');
 
-   ############## PESSOAS ###############
+   ############## RESPONSAVEL UNIDADE GESTORA ###############
    Route::get('/unidade-gestora-responsavel', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'index'])->name('management_units_responsible.view');
    Route::get('/unidade-gestora-responsavel/cadastro', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'create'])->name('management_units_responsible.create');
    Route::get('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'edit'])->name('management_units_responsible.edit');
@@ -115,6 +115,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'update'])->name('management_units_responsible.update');
    Route::delete('/unidade-gestora-responsavel/{id}', [App\Http\Controllers\ManagementUnitResponsibleController::class, 'destroy'])->name('management_units_responsible.destroy');
 
-   
+     ############## RESPONSAVEL ORGÃO ###############
+   Route::get('/orgao-responsavel', [App\Http\Controllers\OrganResponsibleController::class, 'index'])->name('organ_responsible.view');
+   Route::get('/orgao-responsavel/cadastro', [App\Http\Controllers\OrganResponsibleController::class, 'create'])->name('organ_responsible.create');
+   Route::get('/orgao-responsavel/{id}', [App\Http\Controllers\OrganResponsibleController::class, 'edit'])->name('organ_responsible.edit');
+   Route::post('/orgao-responsavel', [App\Http\Controllers\OrganResponsibleController::class, 'store'])->name('organ_responsible.store');
+   Route::put('/orgao-responsavel/{id}', [App\Http\Controllers\OrganResponsibleController::class, 'update'])->name('organ_responsible.update');
+   Route::delete('/orgao-responsavel/{id}', [App\Http\Controllers\OrganResponsibleController::class, 'destroy'])->name('organ_responsible.destroy');
+
 });
 
