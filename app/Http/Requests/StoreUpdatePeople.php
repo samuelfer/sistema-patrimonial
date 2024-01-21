@@ -25,23 +25,41 @@ class StoreUpdatePeople extends FormRequest
 
         $rules=[
             'name' => 'required|min:3|max:255',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('peoples')->ignore($this->people?->id)
-            ],
+            'email' => 'required|email|unique:peoples',
             'cpf'=>'required|unique:peoples',
-            'phone'=>'numeric|required|unique:peoples',
-            'rg'=>'unique:peoples',
-            'matricula'=>'unique:peoples|numeric|required',
+            'phone'=>'numeric',
             'office_id'=>'required',
         ];
 
+        if ($this->matricula != null) {
+            $rules = [
+                'matricula'=> 'unique:peoples',
+            ];
+        }
+
+        if ($this->rg != null) {
+            $rules = [
+                'rg'=>'unique:peoples',
+            ];
+        }
+
+
         if ($this->method() === 'PUT') {
             $rules = [
-                'name' => 'required|min:3|max:255,'.$this->id.',id',
                 'email' => 'required|email|unique:peoples,email,'.$this->id.',id'
             ];
+
+            if ($this->matricula != null) {
+                $rules = [
+                    'matricula' => 'required|email|unique:peoples,matricula,'.$this->id.',id'
+                ];
+            }
+    
+            if ($this->rg != null) {
+                $rules = [
+                    'rg' => 'required|email|unique:peoples,rg,'.$this->id.',id'
+                ];
+            }
         }
 
         return $rules;

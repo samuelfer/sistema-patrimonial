@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Manage-</b>Patrimony',
+    'logo' => '<b>SIGES-</b>Pat',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -324,6 +324,12 @@ return [
             'can'         => 'management_units.view',
         ],
         [
+            'text'        => 'Responsável Unidade gestora',
+            'route'       => 'management_units_responsible.view',
+            'icon'        => 'far fas fa-columns',
+            'can'         => 'management_units_responsible.view',
+        ],
+        [
             'text'        => 'Órgãos',
             'route'       => 'organs.view',
             'icon'        => 'far fas fa-table',
@@ -373,7 +379,7 @@ return [
                 [
                     'text' => 'Auditoria',
                     'route'  => 'logs.view',
-                    'icon' => 'nav-icon fas fa-book',
+                    'icon' => 'fas fa-book',
                     'can'  => 'logs.view'
                 ],
             ],
@@ -497,6 +503,26 @@ return [
                     'type' => 'js',
                     'asset' => true,
                     'location' => 'vendor/sweetalert2/sweetalert2.all.min.js',
+                ],
+            ],
+        ],
+        'DateRangePicker' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/daterangepicker/daterangepicker.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/daterangepicker/daterangepicker.css',
                 ],
             ],
         ],

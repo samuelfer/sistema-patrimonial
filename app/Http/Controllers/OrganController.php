@@ -77,7 +77,7 @@ class OrganController extends Controller
            
             $data = $request->all();
            
-            if ($organ->sector()->count() > 0) {
+            if ($data['status'] == 0 && $organ->sector()->count() > 0) {
                 return redirect()->back()->with('error', 'Esse registro não pode ser inativado.');
             }
 

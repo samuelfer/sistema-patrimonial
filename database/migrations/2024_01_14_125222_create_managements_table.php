@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peoples', function (Blueprint $table) {
+        Schema::create('managements', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('cpf')->unique();
-            $table->string('phone')->nullable();
-            $table->string('rg')->nullable();
-            $table->string('matricula')->nullable();
-            $table->foreignIdFor(\App\Models\Office::class)->onDelete('CASCADE');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peoples');
+        Schema::dropIfExists('managements');
     }
 };

@@ -49,7 +49,7 @@
                                     </a>
                                 @endcan
                                 @can('sectors.destroy')
-                                <form action="{{route('sectors.delete', $sector->id)}}" method="post" class="delete-sectors">
+                                <form action="{{route('sectors.destroy', $sector->id)}}" method="post" class="delete-sectors">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
