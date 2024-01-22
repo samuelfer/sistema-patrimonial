@@ -31,7 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>UNIDADE</th>
+                                        <th>RESPONSÁVEL</th>
+                                        <th>ORGÃO</th>
                                         <th>DATA INÍCIO</th>
                                         <th>DATA FIM</th>
                                         <th>SITUAÇÃO</th>
@@ -43,6 +44,7 @@
                                     <tr>
                                         <td>{{ $organResponsible->id }}</td>
                                         <td>{{ $organResponsible->people->name ?? null }}</td>
+                                        <td>{{ $organResponsible->organ->name}}</td>
                                         <td>{{ $organResponsible->date_start ? $organResponsible->date_start->format('d/m/Y H:i') : '' }}</td>
                                         <td>{{ $organResponsible->date_end ? $organResponsible->date_end->format('d/m/Y H:i') : '' }}</td>
                                         <td>{{ $organResponsible->situation->name ?? null}}</td>
