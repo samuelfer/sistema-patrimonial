@@ -348,6 +348,12 @@ return [
             'can'         => 'sectors.view',
         ],
         [
+            'text'        => 'Responsável Setor',
+            'route'       => 'sector_responsible.view',
+            'icon'        => 'far fas fa-university',
+            'can'         => 'sector_responsible.view',
+        ],
+        [
             'text'        => 'Cargos e Funções',
             'route'       => 'offices.view',
             'icon'        => 'far fas fa-edit',

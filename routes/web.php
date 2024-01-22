@@ -123,5 +123,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::put('/orgao-responsavel/{id}', [App\Http\Controllers\OrganResponsibleController::class, 'update'])->name('organ_responsible.update');
    Route::delete('/orgao-responsavel/{id}', [App\Http\Controllers\OrganResponsibleController::class, 'destroy'])->name('organ_responsible.destroy');
 
+
+     ############## RESPONSAVEL SETOR ###############
+     Route::get('/setor-responsavel', [App\Http\Controllers\SectorResponsibleController::class, 'index'])->name('sector_responsible.view');
+     Route::get('/setor-responsavel/cadastro', [App\Http\Controllers\SectorResponsibleController::class, 'create'])->name('sector_responsible.create');
+     Route::get('/setor-responsavel/{id}', [App\Http\Controllers\SectorResponsibleController::class, 'edit'])->name('sector_responsible.edit');
+     Route::post('/setor-responsavel', [App\Http\Controllers\SectorResponsibleController::class, 'store'])->name('sector_responsible.store');
+     Route::put('/setor-responsavel/{id}', [App\Http\Controllers\SectorResponsibleController::class, 'update'])->name('sector_responsible.update');
+     Route::delete('/setor-responsavel/{id}', [App\Http\Controllers\SectorResponsibleController::class, 'destroy'])->name('sector_responsible.destroy');
+
 });
 
