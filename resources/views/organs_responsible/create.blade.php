@@ -14,7 +14,7 @@
         @include('shared.error-message')
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Responsável Orgao</h3>
+                <h3 class="card-title">Responsável Orgão</h3>
             </div>
 
 
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="date_end">Data início</label>
+                            <label for="date_end">Data fim</label>
                             <input type="date" class="form-control @error('date_end') is-invalid @enderror"
                                 name='date_end' id="date_end"
                                 placeholder="Digite a data de fim" value="{{ old('date_end') }}">
