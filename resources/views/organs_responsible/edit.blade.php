@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="date_end">Data Término</label>
+                            <label for="date_end">Data fim</label>
                             <input type="date" class="form-control @error('date_end') is-invalid @enderror"
                                 name='date_end' id="date_end" value="{{$organResponsible->date_end}}"
                                 placeholder="Digite a data de fim" value="{{ old('date_end') }}">
