@@ -23,8 +23,8 @@ class StoreUpdateOrganResponsible extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'people_id' => 'required|exists:peoples,id',
             'organ_id'  => 'required|exists:organs,id',
+            'people_id' => 'required|exists:peoples,id',
             'date_start' => 'required',
             'date_end' => 'required',
         ];
@@ -37,8 +37,8 @@ class StoreUpdateOrganResponsible extends FormRequest
         return [
             'people_id.required' => 'O responsável é obrigatório',
             'people_id.exists' => 'Selecione um responsável válido',
-            'organ_id.required' => 'A unidade gestora é obrigatória',
-            'organ_id.exists' => 'Selecione uma unidade gestora válida',
+            'organ_id.required' => 'O Orgão é obrigatório',
+            'organ_id.exists' => 'Selecione umOrgão válido',
             'date_start.required' => 'A data de início é obrigatória',
             'date_end.required' => 'O data de fim é obrigatória',
         ];
