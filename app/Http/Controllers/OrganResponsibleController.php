@@ -40,7 +40,7 @@ class OrganResponsibleController extends Controller
             $data = $request->all();
             $data['situation_id'] = 1;
             OrganResponsible::create($data);
-            return redirect()->route('organs_responsible.view')->with('success', 'Registro salvo com sucesso!');
+            return redirect()->route('organ_responsible.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
             dd($e);
@@ -63,7 +63,7 @@ class OrganResponsibleController extends Controller
     {
         $organResponsible = OrganResponsible::find($id);
         if (!$organResponsible) {
-            return redirect()->route('organs_responsible.view')->with('error', 'Registro não encontrado!');
+            return redirect()->route('organ_responsible.view')->with('error', 'Registro não encontrado!');
         }
         $peoples=People::all();
         $organs=Organ::all();
