@@ -31,8 +31,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>RESPONSÁVEL</th>
                                         <th>SETOR</th>
+                                        <th>RESPONSÁVEL</th>
                                         <th>DATA INÍCIO</th>
                                         <th>DATA FIM</th>
                                         <th>SITUAÇÃO</th>
@@ -43,8 +43,8 @@
                                     @forelse($sectorsResponsibles as $sectorResponsible)
                                     <tr>
                                         <td>{{ $sectorResponsible->id }}</td>
-                                        <td>{{ $sectorResponsible->people->name ?? null }}</td>
                                         <td>{{ $sectorResponsible->sector->name}}</td>
+                                        <td>{{ $sectorResponsible->people->name ?? null }}</td>
                                         <td>{{ $sectorResponsible->date_start ? $sectorResponsible->date_start->format('d/m/Y H:i') : '' }}</td>
                                         <td>{{ $sectorResponsible->date_end ? $sectorResponsible->date_end->format('d/m/Y H:i') : '' }}</td>
                                         <td>{{ $sectorResponsible->situation->name ?? null}}</td>
