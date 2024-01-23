@@ -17,7 +17,7 @@
             <div class="card-header">
                 <h3 class="card-title">Lista de Responsáveis Orgão</h3>
                 @can('organ_responsible.create')
-                <a href="{{route('organ_responsible.create')}}" class="btn btn-sm btn-success float-right">NOVA PESSOA</a>
+                <a href="{{route('organ_responsible.create')}}" class="btn btn-sm btn-success float-right">NOVO RESPONSÁVEL</a>
                 @endcan
             </div>
 
