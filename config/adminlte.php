@@ -336,10 +336,22 @@ return [
             'can'         => 'organs.view',
         ],
         [
+            'text'        => 'Responsável Orgão',
+            'route'       => 'organ_responsible.view',
+            'icon'        => 'far fas fa-university',
+            'can'         => 'organ_responsible.view',
+        ],
+        [
             'text'        => 'Setores',
             'route'       => 'sectors.view',
             'icon'        => 'far fas fa-th',
             'can'         => 'sectors.view',
+        ],
+        [
+            'text'        => 'Responsável Setor',
+            'route'       => 'sector_responsible.view',
+            'icon'        => 'far fas fa-university',
+            'can'         => 'sector_responsible.view',
         ],
         [
             'text'        => 'Cargos e Funções',
@@ -371,7 +383,7 @@ return [
                     'can'  => 'roles.view'
                 ],
                 [
-                    'text' => 'Permissoes',
+                    'text' => 'Permissões',
                     'route'  => 'permissions.view',
                     'icon' => 'fas fa-fw fa-lock',
                     'can'  => 'permissions.view'

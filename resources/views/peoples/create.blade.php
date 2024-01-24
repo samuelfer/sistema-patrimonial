@@ -55,7 +55,7 @@
                         <div class="form-group col-md-4">
                             <label for="phone">Telefone</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror" name='phone'
-                                id="phone" placeholder="Digite um telefone" value="{{ old('phone') }}">
+                                id="phone" placeholder="Digite um nome" value="{{ $people->phone??null }}" required>
                             @error('phone')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror

@@ -36,7 +36,7 @@ class Organ extends Model
     protected static function boot()
     {
         parent::boot();
- 
+
         static::addGlobalScope(new StatusScope);
     }
 

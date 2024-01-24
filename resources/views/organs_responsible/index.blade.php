@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de Perfis')
+@section('title', 'Responsável Orgão')
 
 @section('content_header')
 <h3></h3>
@@ -15,9 +15,9 @@
         @include('shared.error-message')
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Lista de perfis</h3>
-                @can('roles.create')
-                <a href="{{route('roles.create')}}" class="btn btn-sm btn-success float-right">NOVO PERFIL</a>
+                <h3 class="card-title">Lista de Responsáveis Orgão</h3>
+                @can('organ_responsible.create')
+                <a href="{{route('organ_responsible.create')}}" class="btn btn-sm btn-success float-right">NOVO RESPONSÁVEL</a>
                 @endcan
             </div>
 
@@ -26,28 +26,36 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-                            <table id="list-roles" class="table table-bordered table-striped dataTable dtr-inline"
-                                aria-describedby="list-roles">
+                            <table id="list-departmentResponsibles" class="table table-bordered table-striped dataTable dtr-inline"
+                                aria-describedby="list-departmentResponsibles">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>NOME</th>
-                                        <th>DESCRIÇÃO</th>
+                                        <th>ORGÃO</th>
+                                        <th>RESPONSÁVEL</th>
+                                        <th>DATA INÍCIO</th>
+                                        <th>DATA FIM</th>
+                                        <th>SITUAÇÃO</th>
                                         <th style="width: 20px;">AÇÕES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($roles as $role)
+                                    @forelse($organsResponsible as $organResponsible)
                                     <tr>
-                                        <td>{{ $role->id}}</td>
-                                        <td>{{ $role->name}}</td>
-                                        <td>{{ $role->description}}</td>
+                                        <td>{{ $organResponsible->id }}</td>
+                                        <td>{{ $organResponsible->organ->name}}</td>
+                                        <td>{{ $organResponsible->people->name ?? null }}</td>
+                                        <td>{{ $organResponsible->date_start ? $organResponsible->date_start->format('d/m/Y H:i') : '' }}</td>
+                                        <td>{{ $organResponsible->date_end ? $organResponsible->date_end->format('d/m/Y H:i') : '' }}</td>
+                                        <td>{{ $organResponsible->situation->name ?? null}}</td>
                                         <td style="display: inline-block; width: 110px;">
-                                            @can('roles.update')<a href="{{route('roles.edit',[$role->id])}}"
-                                                class="btn btn-sm btn-success float-left">Editar</a>@endcan
-                                            @can('roles.delete')
-                                            <form action="{{route('roles.destroy', $role->id)}}" method="post"
-                                                class="delete-role">
+                                            @can('organ_responsible.update')
+                                            <a href="{{route('organ_responsible.edit',[$organResponsible->id])}}"
+                                                class="btn btn-sm btn-success float-left">Editar</a>
+                                            @endcan
+                                            @can('organ_responsible.destroy')
+                                            <form action="{{route('organ_responsible.destroy', $organResponsible->id)}}" method="post"
+                                                class="delete-departmentResponsible">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
@@ -58,9 +66,11 @@
 
                                     @empty
                                     <tr>
-                                        <td colspan="5"> Ainda não há perfis cadastrados.</td>
+                                        <td colspan="5"> Ainda não há registro cadastrado.</td>
                                     </tr>
                                     @endforelse
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -100,7 +110,7 @@
     <script>
     $(function() {
 
-        $("#list-roles").DataTable({
+        $("#list-departmentResponsible").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
@@ -117,7 +127,7 @@
         });
     });
 
-    $('.delete-role').submit(function(ev) {
+    $('.delete-departmentResponsible').submit(function(ev) {
         ev.preventDefault();
 
         Swal.fire({

@@ -20,7 +20,7 @@
 
     <div class="card-body">
         <div id="list" class="dataTables_wrapper dt-bootstrap4">
-            
+
             <div class="row">
                 <div class="col-sm-12">
                     <table id="list-offices" class="table table-bordered table-striped dataTable dtr-inline"
@@ -59,13 +59,13 @@
                             <td colspan="5"> Ainda não há Cargo e Função cadastrado.</td>
                         </tr>
                         @endforelse
-                    
+
                         </tbody>
                     </table>
-            
+
                 </div>
             </div>
-        
+
         </div>
     </div>
 
@@ -79,7 +79,7 @@
     <script>
 
         $(function () {
-          
+
             $("#list-offices").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "search": "Pesquisar",

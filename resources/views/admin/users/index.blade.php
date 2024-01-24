@@ -49,8 +49,8 @@
                                         <td style="display: inline-block; width: 110px;">
                                             @can('users.update')<a href="{{route('users.edit',[$user->id])}}"
                                                 class="btn btn-sm btn-success float-left">Editar</a>@endcan
-                                            @can('users.delete')
-                                            <form action="{{route('users.delete', $user->id)}}" method="post"
+                                            @can('users.destroy')
+                                            <form action="{{route('users.destroy', $user->id)}}" method="post"
                                                 class="delete-user">
                                                 @csrf
                                                 @method('DELETE')

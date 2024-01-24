@@ -29,6 +29,7 @@ class StoreUpdatePeople extends FormRequest
             'cpf'=>'required|unique:peoples',
             'phone'=>'numeric',
             'office_id'=>'required',
+
         ];
 
         if ($this->matricula != null) {
@@ -54,7 +55,7 @@ class StoreUpdatePeople extends FormRequest
                     'matricula' => 'required|email|unique:peoples,matricula,'.$this->id.',id'
                 ];
             }
-    
+
             if ($this->rg != null) {
                 $rules = [
                     'rg' => 'required|email|unique:peoples,rg,'.$this->id.',id'

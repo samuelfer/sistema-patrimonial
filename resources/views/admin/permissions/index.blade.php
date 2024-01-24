@@ -20,7 +20,7 @@
 
     <div class="card-body">
         <div id="list" class="dataTables_wrapper dt-bootstrap4">
-            
+
             <div class="row">
                 <div class="col-sm-12">
                     <table id="list-permissions" class="table table-bordered table-striped dataTable dtr-inline"
@@ -45,7 +45,7 @@
                                     </a>
                                 @endcan
                                 @can('permissions.delete')
-                                <form action="{{route('permissions.delete', $permission->id)}}" method="post" class="delete-permission">
+                                <form action="{{route('permissions.destroy', $permission->id)}}" method="post" class="delete-permission">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
@@ -59,13 +59,13 @@
                             <td colspan="5"> Ainda não há Permissões cadastradas.</td>
                         </tr>
                         @endforelse
-                    
+
                         </tbody>
                     </table>
-            
+
                 </div>
             </div>
-        
+
         </div>
     </div>
 
@@ -79,7 +79,7 @@
     <script>
 
         $(function () {
-          
+
             $("#list-permissions").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "search": "Pesquisar",

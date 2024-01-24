@@ -16,7 +16,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Lista de Responsáveis Unidade Gestora</h3>
-                @can('departmentsResponsibles.create')
+                @can('management_units_responsible.create')
                 <a href="{{route('management_units_responsible.create')}}" class="btn btn-sm btn-success float-right">NOVA PESSOA</a>
                 @endcan
             </div>
