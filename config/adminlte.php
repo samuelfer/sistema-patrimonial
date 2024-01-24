@@ -362,7 +362,7 @@ return [
         [
             'text'        => 'Pessoas',
             'route'       => 'peoples.view',
-            'icon'        => 'far fas  fa-users',
+            'icon'        => 'far fas fa-users',
             'can'         => 'peoples.view',
         ],
         ['header' => 'Configurações'],
