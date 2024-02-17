@@ -32,6 +32,7 @@
                             <th>UNID. GESTORA</th>
                             <th>ENDEREÇO</th>
                             <th>ATIVO</th>
+                            <th>RESPONSÁVEL</th>
                             <th style="width: 20px;">AÇÕES</th>
                         </thead>
                         <tbody>
@@ -44,6 +45,7 @@
                             <td>{{ $organ->managementUnit->name }}</td>
                             <td>{{ $organ->address }}</td>
                             <td>{{ $organ->status == 1 ? 'Sim' : 'Não' }}</td>
+                            <td><a href="#">Teste</a></td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('organs.update')
                                     <a href="{{route('organs.edit',[$organ->id])}}"

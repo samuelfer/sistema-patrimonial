@@ -59,6 +59,7 @@ class ManagementUnitController extends Controller
         }
 
         $unit = ManagementUnit::find($id);
+       
         if (!$unit) {
             return redirect()->route('management_units.view')->with('error', 'Registro não encontrado!');
         }

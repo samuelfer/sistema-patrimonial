@@ -324,22 +324,10 @@ return [
             'can'         => 'management_units.view',
         ],
         [
-            'text'        => 'Responsável Unidade gestora',
-            'route'       => 'management_units_responsible.view',
-            'icon'        => 'far fas fa-columns',
-            'can'         => 'management_units_responsible.view',
-        ],
-        [
             'text'        => 'Órgãos',
             'route'       => 'organs.view',
             'icon'        => 'far fas fa-table',
             'can'         => 'organs.view',
-        ],
-        [
-            'text'        => 'Responsável Orgão',
-            'route'       => 'organ_responsible.view',
-            'icon'        => 'far fas fa-university',
-            'can'         => 'organ_responsible.view',
         ],
         [
             'text'        => 'Setores',
@@ -348,10 +336,28 @@ return [
             'can'         => 'sectors.view',
         ],
         [
-            'text'        => 'Responsável Setor',
-            'route'       => 'sector_responsible.view',
-            'icon'        => 'far fas fa-university',
-            'can'         => 'sector_responsible.view',
+            'text'    => 'Responsabilidades',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text'        => 'Resp. Unidade gestora',
+                    'route'       => 'management_units_responsible.view',
+                    'icon'        => 'fa fa-id-card',
+                    'can'         => 'management_units_responsible.view',
+                ],
+                [
+                    'text'        => 'Responsável Orgão',
+                    'route'       => 'organ_responsible.view',
+                    'icon'        => 'fa fa-id-card',
+                    'can'         => 'organ_responsible.view',
+                ],
+                [
+                    'text'        => 'Responsável Setor',
+                    'route'       => 'sector_responsible.view',
+                    'icon'        => 'fa fa-id-card',
+                    'can'         => 'sector_responsible.view',
+                ],
+            ],
         ],
         [
             'text'        => 'Cargos e Funções',
