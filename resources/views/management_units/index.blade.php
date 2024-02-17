@@ -32,6 +32,7 @@
                             <th>TELEFONE</th>
                             <th>EMAIL</th>
                             <th>CNPJ</th>
+                            <th>RESPONSÁVEL</th>
                             <th style="width: 20px;">AÇÕES</th>
                         </thead>
                         <tbody>
@@ -44,6 +45,7 @@
                             <td>{{ $unit->phone }}</td>
                             <td>{{ $unit->email }}</td>
                             <td>{{ $unit->cnpj }}</td>
+                            <td><a href="#">Teste</a></td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('management_units.update')
                                     <a href="{{route('management_units.edit',[$unit->id])}}"
