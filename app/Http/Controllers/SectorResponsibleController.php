@@ -42,18 +42,19 @@ class SectorResponsibleController extends Controller
         try {
 
             $data = $request->all();
+
+            if ($this->managementUnitHasResponsibleActive($data['sector_id'])) {
+                return redirect()->route('sector_responsible.view')
+                    ->with('error', 'O setor já possui um responsável Ativo!');
+            }
+
             $data['situation_id'] = 1;
-          //  dd($data);
             SectorResponsible::create($data);
             return redirect()->route('sector_responsible.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-
-            dd($e);
             return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
-
         }
-
     }
 
     /**
@@ -86,17 +87,21 @@ class SectorResponsibleController extends Controller
      */
     public function update(StoreUpdateSectorResponsible $request, string $id)
     {
-            try {
-                $sectorResponsible=SectorResponsible::find($id);
-                $data = $request->all();
+        try {
+            $sectorResponsible=SectorResponsible::find($id);
+            $data = $request->all();
 
-                $sectorResponsible->update($data);
-
-                return redirect()->route('sector_responsible.view')->with('success', 'Registro salvo com sucesso!');
-            } catch (Exception $e) {
-                dd($e);
-                return redirect()->back()->with('error', 'Erro ao tentar salvar!');
+            if ($this->responsibleSectorUpdateNotEqualResponsibleActualActive($sectorResponsible, $data['people_id'])) {
+                return redirect()->back()
+                    ->with('error', 'O setor já possui um responsável Ativo!');
             }
+
+            $sectorResponsible->update($data);
+
+            return redirect()->route('sector_responsible.view')->with('success', 'Registro salvo com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Erro ao tentar salvar!');
+        }
     }
 
     /**
@@ -110,5 +115,16 @@ class SectorResponsibleController extends Controller
         }
         $sectorResponsible->delete();
         return redirect()->route('sector_responsible.view')->with('success', 'Registro excluído com sucesso!');
+    }
+
+    private function sectorHasResponsibleActive(int $sectorId) {
+        return SectorResponsible
+                ::where('sector_id', $sectorId)->where('situation_id', 1)->count() > 0;
+    }
+
+    private function responsibleSectorUpdateNotEqualResponsibleActualActive(SectorResponsible $sectorResponsible,
+                                                                 int $responsibleId) {
+        return $this->sectorHasResponsibleActive($sectorResponsible->sector_id) &&
+                                    $sectorResponsible->people_id != $responsibleId;
     }
 }
