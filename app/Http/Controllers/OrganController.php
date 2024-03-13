@@ -101,7 +101,8 @@ class OrganController extends Controller
             return redirect()->back()->with('error', 'Registro não encontrado.');
         }
         if ($organ->sector()->count() > 0) {
-            return redirect()->back()->with('error', 'Esse registro não pode ser excluído.');
+            return redirect()->back()
+                ->with('error', 'Esse registro não pode ser excluído pois ele está relacionado com setor.');
         }
         $organ->delete();
         return redirect()->route('sectors.view')->with('success', 'Registro excluído com sucesso!');
