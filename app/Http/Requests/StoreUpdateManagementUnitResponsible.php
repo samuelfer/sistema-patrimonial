@@ -23,7 +23,7 @@ class StoreUpdateManagementUnitResponsible extends FormRequest
     {
         $rules = [
             'people_id' => 'required|exists:peoples,id',
-            'management_unit_id'  => 'required|exists:management_unit,id',
+            'management_unit_id'  => 'required|exists:management_units,id',
             'date_start' => 'required',
             'date_end' => 'required',
             'situation_id' => 'required|exists:situations,id',
