@@ -38,12 +38,17 @@ class OrganResponsibleController extends Controller
     {
         try {
             $data = $request->all();
+
+            if ($this->managementUnitHasResponsibleActive($data['organ_id'])) {
+                return redirect()->route('organ_responsible.view')
+                    ->with('error', 'O órgão já possui um responsável Ativo!');
+            }
+
             $data['situation_id'] = 1;
             OrganResponsible::create($data);
             return redirect()->route('organ_responsible.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-            dd($e);
             return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
         }
     }
@@ -80,6 +85,11 @@ class OrganResponsibleController extends Controller
             $organResponsible=OrganResponsible::find($id);
             $data=$request->all();
 
+            if ($this->responsibleOrganUpdateNotEqualResponsibleActualActive($organResponsible, $data['people_id'])) {
+                return redirect()->back()
+                    ->with('error', 'O órgão já possui um responsável Ativo!');
+            }
+
             $organResponsible->update($data);
 
             return redirect()->route('organ_responsible.view')->with('success', 'Registro salvo com sucesso!');
@@ -102,7 +112,16 @@ class OrganResponsibleController extends Controller
 
         $organResponsible->delete();
         return redirect()->route('organ_responsible.view')->with('success', 'Registro excluído com sucesso!');
+    }
 
+    private function organHasResponsibleActive(int $organId) {
+        return OrganResponsible
+                ::where('organ_id', $organId)->where('situation_id', 1)->count() > 0;
+    }
 
+    private function responsibleOrganUpdateNotEqualResponsibleActualActive(OrganResponsible $organResponsible,
+                                                                 int $responsibleId) {
+        return $this->organHasResponsibleActive($organResponsible->organ_id) &&
+                                    $organResponsible->people_id != $responsibleId;
     }
 }

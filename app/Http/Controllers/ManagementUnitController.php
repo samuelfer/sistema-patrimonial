@@ -94,7 +94,7 @@ class ManagementUnitController extends Controller
     public function destroy(string $id)
     {
         if (!Auth::user()->is_admin) {
-            return redirect()->route('management_units.view')->with('error', 'O usuário logado não pode excluir permissões!');
+            return redirect()->route('management_units.view')->with('error', 'O usuário logado não pode excluir unidade gestora!');
         }
 
         $unit = ManagementUnit::find($id);

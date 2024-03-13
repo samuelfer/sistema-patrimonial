@@ -36,6 +36,11 @@ class ManagementUnitResponsibleController extends Controller
         try {
             $data = $request->all();
 
+            if ($this->managementUnitHasResponsibleActive($data['management_unit_id'])) {
+                return redirect()->route('management_units_responsible.view')
+                    ->with('error', 'A unidade gestora já possui um responsável Ativo!');
+            }
+
             $data['situation_id'] = 1;
             ManagementUnitResponsible::create($data);
             return redirect()->route('management_units_responsible.view')->with('success', 'Registro salvo com sucesso!');
@@ -77,6 +82,11 @@ class ManagementUnitResponsibleController extends Controller
             $managementUnitResponsible = ManagementUnitResponsible::find($id);
             $data = $request->all();
 
+            if ($this->responsibleUnitUpdateNotEqualResponsibleActualActive($managementUnitResponsible, $data['people_id'])) {
+                return redirect()->back()
+                    ->with('error', 'A unidade gestora já possui um responsável Ativo!');
+            }
+
             $managementUnitResponsible->update($data);
 
             return redirect()->route('management_units_responsible.view')->with('success', 'Registro salvo com sucesso!');
@@ -99,5 +109,19 @@ class ManagementUnitResponsibleController extends Controller
 
         $managementUnitResponsible->delete();
         return redirect()->route('management_units_responsible.view')->with('success', 'Registro excluído com sucesso!');
+    }
+
+    private function managementUnitHasResponsibleActive(int $managementUnitId) {
+        return ManagementUnitResponsible
+                ::where('management_unit_id', $managementUnitId)->where('situation_id', 1)->count() > 0;
+    }
+
+    /**
+     * Valide se o responsavel da atualizacao eh o responsavel atual ativo
+     */
+    private function responsibleUnitUpdateNotEqualResponsibleActualActive(ManagementUnitResponsible $managementUnitResponsible,
+                                                                 int $responsibleId) {
+        return $this->managementUnitHasResponsibleActive($managementUnitResponsible->management_unit_id) &&
+                                    $managementUnitResponsible->people_id != $responsibleId;
     }
 }
