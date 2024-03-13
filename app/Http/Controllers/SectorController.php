@@ -88,6 +88,11 @@ class SectorController extends Controller
     public function destroy(string $id)
     {
         $sector = Sector::find($id);
+
+        if ($sector->organ()->count() > 0) {
+            return redirect()->back()
+            ->with('error', 'Esse setor não pode ser excluído pois ele está relacionado com órgão.');
+        }
      
         if (!$sector) {
             return redirect()->back()->with('error', 'Ocorreu um erro ao tentar excluir o registro.');
