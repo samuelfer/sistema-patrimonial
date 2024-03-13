@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class SectorResponsible extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity, SoftDeletes;
 
     protected $table='sectors_responsibles';
+    
     protected $fillable = ['people_id', 'sector_id', 'date_start', 'date_end', 'situation_id'];
     protected $casts = [
         'date_start' => 'datetime:Y-m-d',
@@ -27,6 +30,7 @@ class SectorResponsible extends Model
     {
         return $this->belongsTo(People::class);
     }
+
     public function sector()
     {
         return $this->belongsTo(Sector::class);
