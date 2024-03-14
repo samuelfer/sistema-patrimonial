@@ -72,17 +72,17 @@ class StoreUpdatePeople extends FormRequest
             'name.min' => 'O tamanho mínimo do nome é de 3 caracteres',
             'name.max' => 'O tamanho máximo do nome é de 255 caracteres',
             'email.email' => 'O email precisa ser válido',
-            'email.unique' => 'O email passado já está em uso!',
-            'email.required' => 'O email é obrigatório!',
+            'email.unique' => 'O email passado já está em uso',
+            'email.required' => 'O email é obrigatório',
             'phone.numeric' => 'O telefone precisa ter apenas números',
             'phone.unique' => 'Esse telefone já está em uso',
-            'phone.required' => 'O telefone é obrigatório!',
-            'cpf.required' => 'O cpf é obrigatório!',
+            'phone.required' => 'O telefone é obrigatório',
+            'cpf.required' => 'O cpf é obrigatório',
             'cpf.unique'=>'Esse cpf já está em uso',
             'rg.unique'=>'Esse RG já está em uso',
             'matricula.unique' => 'Essa matricula ja está em uso',
             'matricula.numeric'=>'A matricula precisa ser numérica',
-            'office_id.required'=>'selecione um cargo!',
+            'office_id.required'=>'selecione um cargo',
         ];
     }
 }

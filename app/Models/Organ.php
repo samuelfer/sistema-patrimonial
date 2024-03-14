@@ -15,12 +15,14 @@ class Organ extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes;
 
-    protected $fillable = ['name', 'sigla', 'description', 'management_unit_id', 'address', 'status', 'phone', 'email'];
+    protected $fillable = ['name', 'sigla', 'description', 'management_unit_id', 
+        'address', 'status', 'phone', 'email', 'people_id'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'sigla', 'description', 'management_unit_id', 'address', 'status', 'phone', 'email'])
+        ->logOnly(['name', 'sigla', 'description', 'management_unit_id', 'address', 'status',
+             'phone', 'email', 'people_id'])
         ->dontSubmitEmptyLogs();
     }
 
@@ -44,5 +46,11 @@ class Organ extends Model
     public function getSiglaAttribute($value)
     {
         return mb_strtoupper($value);
+    }
+
+    //Responsavel pelo orgao
+    public function people() 
+    {
+        return $this->belongsTo(People::class);
     }
 }

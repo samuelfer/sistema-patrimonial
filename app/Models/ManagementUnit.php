@@ -14,12 +14,18 @@ class ManagementUnit extends Model
 
     protected $table = 'management_units';
 
-    protected $fillable = ['name', 'cod', 'description', 'cnpj', 'phone', 'email'];
+    protected $fillable = ['name', 'cod', 'description', 'cnpj', 'phone', 'email', 'people_id'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'cod', 'description', 'cnpj', 'phone', 'email'])
+        ->logOnly(['name', 'cod', 'description', 'cnpj', 'phone', 'email' , 'people_id'])
         ->dontSubmitEmptyLogs();
+    }
+
+    //Responsavel pela unidade gestora
+    public function people() 
+    {
+        return $this->belongsTo(People::class);
     }
 }

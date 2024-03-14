@@ -50,7 +50,7 @@
                     </div>
                     
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
                             <label for="cod">Cnpj</label>
                             <input type="text" class="form-control @error('cnpj') is-invalid @enderror" name='cnpj' id="cnpj" 
                                 placeholder="Digite um cnpj" value="{{ old('cnpj') }}">
@@ -59,7 +59,7 @@
                                 @enderror
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="email">Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name='email' id="email" 
                                 placeholder="Digite um email" value="{{ old('email') }}">
@@ -67,17 +67,44 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                         </div>
+                  
+                        <div class="form-group col-md-5">
+                            <label for="people_id">Selecione o responsável</label>
+                            <select class="js-basic form-control" name="people_id">
+                                <option value="">Selecione</option>
+                                @foreach($peoples as $people)
+                                    <option value="{{ $people->id }}">{{ $people->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('people_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="descricao">Descrição</label>
-                        <input type="text" class="form-control @error('descricao') is-invalid @enderror" 
+                    <div class="row">
+
+                        <div class="form-group col-md-5">
+                            <label for="people_id">Selecione o responsável</label>
+                            <select class="js-basic form-control" name="people_id">
+                                <option value="">Selecione</option>
+                                @foreach($peoples as $people)
+                                    <option value="{{ $people->id }}">{{ $people->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('people_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" class="form-control @error('descricao') is-invalid @enderror" 
                             name="descricao" id="descricao" placeholder="Digite a descrição" value="{{ old('descricao') }}">
                             @error('descricao')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                    </div>
+                        </div>
                     
-                </div>
+                    </div>
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success">Salvar</button>

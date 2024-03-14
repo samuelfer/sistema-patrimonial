@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateOrgan;
 use App\Models\ManagementUnit;
 use App\Models\Organ;
+use App\Models\People;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,8 @@ class OrganController extends Controller
     public function create()
     {
         $managementUnits = ManagementUnit::all();
-        return view('organs.create', compact('managementUnits'));
+        $peoples = People::where('situation_id', 1)->get();
+        return view('organs.create', compact('managementUnits', 'peoples'));
     }
 
     public function store(StoreUpdateOrgan $request)
@@ -61,7 +63,8 @@ class OrganController extends Controller
             return redirect()->route('organs.view')->with('error', 'Registro não encontrado!');
         }
         $managementUnits = ManagementUnit::all();
-        return view('organs.edit', compact('organ', 'managementUnits'));
+        $peoples = People::where('situation_id', 1)->get();
+        return view('organs.edit', compact('organ', 'managementUnits', 'peoples'));
     }
 
     /**
@@ -76,6 +79,10 @@ class OrganController extends Controller
             }
            
             $data = $request->all();
+
+            if ($data['people_id'] == null) {
+                return redirect()->back()->with('error', 'O responsável é obrigatório!');
+            }
            
             if ($data['status'] == 0 && $organ->sector()->count() > 0) {
                 return redirect()->back()->with('error', 'Esse registro não pode ser inativado.');

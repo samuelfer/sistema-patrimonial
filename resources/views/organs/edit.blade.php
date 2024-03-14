@@ -83,7 +83,7 @@
 
 
                         <div class="form-group col-md-2">
-                            <label for="status">Status</label>
+                            <label for="status">Ativo</label>
                             <select class="js-basic form-control" name="status">
                                 <option value="">Selecione</option>
                                 <option value="1" @if ($organ->status == 1) selected @endif>Sim</option>
@@ -93,17 +93,32 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                    
                     </div>
-                    <div class="form-group">
-                        <label for="address">Endereço</label>
-                        <input type="address" class="form-control @error('address') is-invalid @enderror"
-                            value="{{$organ->address}}" name="address" id="address" placeholder="Digite o endereço">
-                            @error('address')
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="address">Endereço</label>
+                            <input type="address" class="form-control @error('address') is-invalid @enderror"
+                                value="{{$organ->address}}" name="address" id="address" placeholder="Digite o endereço">
+                                @error('address')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
+                    
+                        <div class="form-group col-md-6">
+                            <label for="people_id">Selecione o responsável</label>
+                            <select class="js-basic form-control" name="people_id">
+                                <option value="">Selecione</option>
+                                @foreach($peoples as $people)
+                                    <option @if ($people->id == $organ->people_id) selected @endif  value="{{ $people->id }}">{{ $people->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('people_id')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                    </div>
+                        </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <label for="description">Descrição</label>
                         <input type="description" class="form-control @error('description') is-invalid @enderror"
                             value="{{$organ->description}}" name="description" id="description" placeholder="Digite a descrição">

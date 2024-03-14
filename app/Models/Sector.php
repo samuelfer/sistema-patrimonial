@@ -13,12 +13,12 @@ class Sector extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes;
 
-    protected $fillable = ['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email'];
+    protected $fillable = ['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email', 'people_id'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email'])
+        ->logOnly(['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email', 'people_id'])
         ->dontSubmitEmptyLogs();
     }
 
@@ -35,5 +35,11 @@ class Sector extends Model
     public function responsible()
     {
         return $this->belongsTo(SectorResponsible::class);
+    }
+
+    //Responsavel pelo setor
+    public function people() 
+    {
+        return $this->belongsTo(People::class);
     }
 }

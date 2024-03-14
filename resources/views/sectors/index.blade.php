@@ -28,7 +28,7 @@
                         <thead>
                             <th>ID</th>
                             <th>NOME</th>
-                            <th>CÓDIGO</th>
+                            <th>SIGLA</th>
                             <th>ÓRGÃO</th>
                             <th>ATIVO</th>
                             <th>RESPONSÁVEL</th>
@@ -40,10 +40,10 @@
                         <tr>
                             <td>{{ $sector->id}}</td>
                             <td>{{ $sector->name}}</td>
-                            <td>{{ $sector->cod}}</td>
+                            <td>{{ $sector->sigla}}</td>
                             <td>{{ $sector->organ->name}}</td>
                             <td>{{ $sector->status == 1 ? 'Sim' : 'Não' }}</td>
-                            <td><a href="#">Teste</a></td>
+                            <td>{{ $sector->people?->name }}</td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('sectors.update')
                                     <a href="{{route('sectors.edit',[$sector->id])}}"

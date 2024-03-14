@@ -36,6 +36,7 @@ class PeopleController extends Controller
 
             $data = $request->all();
             $data['status'] = 1;
+            $data['situation_id'] = 1;
             People::query()->create($data);
             return redirect()->route('peoples.view')->with('success', 'Registro salvo com sucesso!');
 

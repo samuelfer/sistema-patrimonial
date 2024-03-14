@@ -27,7 +27,8 @@ class StoreUpdateManagementUnit extends FormRequest
             'description' => 'max:255',
             'cnpj' => 'numeric|unique:management_units',
             'phone' => 'numeric',
-            'email' => 'email'
+            'email' => 'email',
+            'people_id' => 'required'
         ];
 
         if ($this->method() === 'PUT') {
@@ -57,6 +58,7 @@ class StoreUpdateManagementUnit extends FormRequest
             'cnpj.numeric' => 'O cnpj precisa ter apenas números',
             'phone.numeric' => 'O telefone precisa ter apenas números',
             'email.email' => 'O email precisa ser válido',
+            'people_id' => 'O responsável é obrigatório'
         ];
     }
 }
