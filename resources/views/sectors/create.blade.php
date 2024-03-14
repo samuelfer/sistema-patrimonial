@@ -114,3 +114,13 @@
 </div>
 
 @stop
+
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#phone').inputmask('(99)-999-9999');
+        });
+    </script>
+@stop
