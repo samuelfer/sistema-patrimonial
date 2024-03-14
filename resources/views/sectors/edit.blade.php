@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="phone">Telefone</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror"
                                 value="{{$sector->phone}}" name='phone' id="phone"
@@ -78,32 +78,44 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                         </div>
-                    </div>
 
-
-
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="js-basic form-control" name="status">
-                            <option value="">Selecione</option>
-                            <option value="1" @if ($sector->status == 1) selected @endif>Sim</option>
-                            <option value="0" @if ($sector->status == 0) selected @endif>Não</option>
-                        </select>
-                        @error('status')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Descrição</label>
-                        <input type="description" class="form-control @error('description') is-invalid @enderror"
-                            value="{{$sector->description}}" name="description" id="description" placeholder="Digite a descrição">
-                            @error('description')
+                        <div class="form-group col-md-2">
+                            <label for="status">Ativo</label>
+                            <select class="js-basic form-control" name="status">
+                                <option value="">Selecione</option>
+                                <option value="1" @if ($sector->status == 1) selected @endif>Sim</option>
+                                <option value="0" @if ($sector->status == 0) selected @endif>Não</option>
+                            </select>
+                            @error('status')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                        </div>
                     </div>
+                    <div class="row">
+                        
+                        <div class="form-group col-md-6">
+                            <label for="people_id">Selecione o responsável</label>
+                            <select class="js-basic form-control" name="people_id">
+                                <option value="">Selecione</option>
+                                @foreach($peoples as $people)
+                                    <option @if ($people->id == $sector->people_id) selected @endif  value="{{ $people->id }}">{{ $people->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('people_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                </div>
+                        <div class="form-group col-md-12">
+                            <label for="description">Descrição</label>
+                            <input type="description" class="form-control @error('description') is-invalid @enderror"
+                                value="{{$sector->description}}" name="description" id="description" placeholder="Digite a descrição">
+                                @error('description')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
+
+                    </div>
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success">Salvar</button>

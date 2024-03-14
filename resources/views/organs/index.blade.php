@@ -45,7 +45,7 @@
                             <td>{{ $organ->managementUnit->name }}</td>
                             <td>{{ $organ->address }}</td>
                             <td>{{ $organ->status == 1 ? 'Sim' : 'Não' }}</td>
-                            <td><a href="#">Teste</a></td>
+                            <td>{{ $organ->people?->name }}</td>
                             <td style="display: inline-block; width: 110px;">
                                 @can('organs.update')
                                     <a href="{{route('organs.edit',[$organ->id])}}"
