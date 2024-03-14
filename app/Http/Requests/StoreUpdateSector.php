@@ -25,6 +25,7 @@ class StoreUpdateSector extends FormRequest
             'name' => 'required|min:3|max:255|unique:sectors',
             'organ_id' => 'required',
             'description' => 'max:255',
+            'people_id' => 'required'
         ];
 
         if ($this->sigla != null) {
@@ -37,11 +38,12 @@ class StoreUpdateSector extends FormRequest
         if ($this->method() === 'PUT') {
             $rules = [
                 'name' => 'required|min:3|max:255|unique:sectors,name,'.$this->id.',id',
+                'people_id' => 'required'
             ];
 
             if ($this->sigla != null) {
                 $rules = [
-                    'sigla'=> 'min:2|max:255|unique:sectors,sigla,'.$this->id.',sigla',
+                    'sigla'=> 'min:2|max:255|unique:sectors,sigla,'.$this->id.',id',
                 ];
             }
         }
@@ -58,6 +60,7 @@ class StoreUpdateSector extends FormRequest
             'name.unique' => 'Esse nome já está em uso',
             'organ_id.required' => 'O órgão é obrigatório',
             'sigla.unique' => 'Essa sigla já está em uso',
+            'people_id.required' => 'O responsável é obrigatório'
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateManagementUnit;
 use App\Models\ManagementUnit;
+use App\Models\People;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,8 @@ class ManagementUnitController extends Controller
      */
     public function create()
     {
-        return view('management_units.create');
+        $peoples = People::where('situation_id', 1)->get();
+        return view('management_units.create', compact('peoples'));
     }
 
     public function store(StoreUpdateManagementUnit $request)
@@ -63,7 +65,8 @@ class ManagementUnitController extends Controller
         if (!$unit) {
             return redirect()->route('management_units.view')->with('error', 'Registro não encontrado!');
         }
-        return view('management_units.edit', compact('unit'));
+        $peoples = People::where('situation_id', 1)->get();
+        return view('management_units.edit', compact('unit', 'peoples'));
     }
 
     /**
@@ -78,6 +81,10 @@ class ManagementUnitController extends Controller
             
             $unit = ManagementUnit::find($id);
             $data = $request->all();
+
+            if ($data['people_id'] == null) {
+                return redirect()->back()->with('error', 'O responsável é obrigatório!');
+            }
 
             $unit->update($data);
 

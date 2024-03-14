@@ -34,4 +34,9 @@ class People extends Model
         return $this->belongsTo(Office::class);
     }
 
+    public function managementUnit() 
+    {
+        return $this->hasOne(ManagementUnit::class);
+    }
+
 }

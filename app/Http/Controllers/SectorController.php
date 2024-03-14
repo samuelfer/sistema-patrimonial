@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSector;
 use App\Models\Organ;
+use App\Models\People;
 use App\Models\Sector;
 use Exception;
 
@@ -25,7 +26,8 @@ class SectorController extends Controller
     public function create()
     {
         $organs = Organ::all();
-        return view('sectors.create', compact('organs'));
+        $peoples = People::where('situation_id', 1)->get();
+        return view('sectors.create', compact('organs', 'peoples'));
     }
 
     public function store(StoreUpdateSector $request)
@@ -60,7 +62,8 @@ class SectorController extends Controller
             return redirect()->route('sectors.view')->with('error', 'Registro não encontrado!');
         }
         $organs = Organ::all();
-        return view('sectors.edit', compact('sector', 'organs'));
+        $peoples = People::where('situation_id', 1)->get();
+        return view('sectors.edit', compact('sector', 'organs', 'peoples'));
     }
 
     /**
@@ -72,6 +75,10 @@ class SectorController extends Controller
            
             $sector = Sector::find($id);
             $data = $request->all();
+
+            if ($data['people_id'] == null) {
+                return redirect()->back()->with('error', 'O responsável é obrigatório!');
+            }
 
             $sector->update($data);
 

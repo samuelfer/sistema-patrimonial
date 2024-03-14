@@ -26,7 +26,8 @@ class StoreUpdateOrgan extends FormRequest
             'management_unit_id' => 'required',
             'description' => 'max:255',
             'phone' => 'numeric',
-            'email' => 'email'
+            'email' => 'email',
+            'people_id' => 'required'
         ];
 
         if ($this->sigla != null) {
@@ -65,6 +66,7 @@ class StoreUpdateOrgan extends FormRequest
             'sigla.max' => 'O tamanho máximo permitido de 255 caracteres',
             'phone.numeric' => 'O telefone precisa ter apenas números',
             'email.email' => 'O email precisa ser válido',
+            'people_id.required' => 'O responsável é obrigatório'
         ];
     }
 }
