@@ -41,7 +41,7 @@
                             <td>{{ $sector->id}}</td>
                             <td>{{ $sector->name}}</td>
                             <td>{{ $sector->sigla}}</td>
-                            <td>{{ $sector->organ->name}}</td>
+                            <td>{{ $sector->organ?->name}}</td>
                             <td>{{ $sector->status == 1 ? 'Sim' : 'Não' }}</td>
                             <td>{{ $sector->people?->name }}</td>
                             <td style="display: inline-block; width: 110px;">

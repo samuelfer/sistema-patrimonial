@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organ;
+use App\Models\People;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $countSectors = Sector::count();
+        $countPeoples = People::count();
+        $countOrgans = Organ::count();
+        return view('home', compact('countSectors', 'countPeoples', 'countOrgans'));
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\TenantAttributeTrait;
+use App\Http\Traits\TenantScoped;
 use App\Models\Scopes\StatusScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,10 +15,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Organ extends Model
 {
-    use HasFactory, LogsActivity, SoftDeletes;
+    use HasFactory, LogsActivity, SoftDeletes, TenantAttributeTrait, TenantScoped;
 
     protected $fillable = ['name', 'sigla', 'description', 'management_unit_id', 
-        'address', 'status', 'phone', 'email', 'people_id'];
+        'address', 'status', 'phone', 'email', 'people_id', 'situation_id'];
 
     public function getActivitylogOptions(): LogOptions
     {

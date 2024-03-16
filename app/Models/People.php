@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\TenantAttributeTrait;
+use App\Http\Traits\TenantScoped;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +12,7 @@ use Spatie\Activitylog\LogOptions;
 
 class People extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, TenantAttributeTrait, TenantScoped;
 
     protected $table = 'peoples';
     protected $fillable=[
