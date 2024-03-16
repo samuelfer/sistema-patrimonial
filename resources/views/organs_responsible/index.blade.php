@@ -43,8 +43,8 @@
                                     @forelse($organsResponsible as $organResponsible)
                                     <tr>
                                         <td>{{ $organResponsible->id }}</td>
-                                        <td>{{ $organResponsible->organ->name}}</td>
-                                        <td>{{ $organResponsible->people->name ?? null }}</td>
+                                        <td>{{ $organResponsible->organ?->name}}</td>
+                                        <td>{{ $organResponsible->people?->name ?? null }}</td>
                                         <td>{{ $organResponsible->date_start ? $organResponsible->date_start->format('d/m/Y H:i') : '' }}</td>
                                         <td>{{ $organResponsible->date_end ? $organResponsible->date_end->format('d/m/Y H:i') : '' }}</td>
                                         <td>{{ $organResponsible->situation->name ?? null}}</td>

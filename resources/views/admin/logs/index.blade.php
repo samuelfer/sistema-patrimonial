@@ -25,6 +25,7 @@
                             <th>DADOS</th>
                             <th>EVENTO</th>
                             <th>FEITO POR</th>
+                            <th>DATA</th>
                         </thead>
                         <tbody>
 
@@ -32,8 +33,9 @@
                         <tr>
                             <td>{{ $activity->description}}</td>
                             <td>{{ $activity->properties }}</td>
-                            <td>{{ $activity->event}}</td>
-                            <td>{{ $activity->causer_id}}</td>
+                            <td>{{ $activity->event }}</td>
+                            <td>{{ $activity->causer_id }}</td>
+                            <td>{{ $activity->created_at->format('d/m/Y H:i') }}</td>
                         </tr>
 
                         @empty

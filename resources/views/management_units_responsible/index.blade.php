@@ -43,8 +43,8 @@
                                     @forelse($managementUnitsResponsible as $managementUnitResponsible)
                                     <tr>
                                         <td>{{ $managementUnitResponsible->id }}</td>
-                                        <td>{{ $managementUnitResponsible->managementUnit->name }}</td>
-                                        <td>{{ $managementUnitResponsible->people->name }}</td>
+                                        <td>{{ $managementUnitResponsible->managementUnit?->name }}</td>
+                                        <td>{{ $managementUnitResponsible->people?->name }}</td>
                                         <td>{{ $managementUnitResponsible->date_start->format('d/m/Y H:i') }}</td>
                                         <td>{{ $managementUnitResponsible->date_end->format('d/m/Y H:i') }}</td>
                                         <td>{{ $managementUnitResponsible->situation->name }}</td>
