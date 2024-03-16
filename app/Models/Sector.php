@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\TenantAttributeTrait;
+use App\Http\Traits\TenantScoped;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,9 +13,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Sector extends Model
 {
-    use HasFactory, LogsActivity, SoftDeletes;
+    use HasFactory, LogsActivity, SoftDeletes, TenantAttributeTrait, TenantScoped;
 
-    protected $fillable = ['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email', 'people_id'];
+    protected $fillable = ['name', 'sigla', 'status', 'organ_id', 'description', 'phone', 'email', 
+                            'people_id', 'management_unit_id'];
 
     public function getActivitylogOptions(): LogOptions
     {

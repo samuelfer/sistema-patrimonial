@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Traits\TenantAttributeTrait;
+use App\Http\Traits\TenantScoped;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class SectorResponsible extends Model
 {
-    use HasFactory, LogsActivity, SoftDeletes;
+    use HasFactory, LogsActivity, SoftDeletes, TenantAttributeTrait, TenantScoped;
 
     protected $table='sectors_responsibles';
     
