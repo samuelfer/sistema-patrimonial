@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\StoreUpdateOffice;
 use App\Models\ManagementUnit;
 use App\Models\Office;
@@ -10,10 +12,22 @@ use Exception;
 
 class OfficeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $offices = Office::all();
-        return view('offices.index', compact('offices'));
+        $offices = Office::when($request->has('name'), function ($whenQuery) use ($request){
+            $whenQuery->where('name', 'like', '%' . $request->name . '%');
+        })
+        ->when($request->filled('start_date'), function ($whenQuery) use ($request){
+            $whenQuery->where('start_date', '>=', \Carbon\Carbon::parse($request->start_date)->format('Y-m-d'));
+        })
+        ->when($request->filled('end_date'), function ($whenQuery) use ($request){
+            $whenQuery->where('end_date', '<=', \Carbon\Carbon::parse($request->end_date)->format('Y-m-d'));
+        })
+        ->orderByDesc('created_at')
+        ->get();
+
+        return view('offices.index', ['offices' => $offices, 'name' => $request->name, 
+                                                'startDate' => $request->start_date, 'endDate' => $request->end_date]);
     }
 
     /**
@@ -98,5 +112,27 @@ class OfficeController extends Controller
 
         $office->delete();
         return redirect()->route('offices.view')->with('success', 'Registro excluído com sucesso!');
+    }
+
+    public function gerarPdf(Request $request)
+    {
+        $offices = Office::when($request->has('name'), function ($whenQuery) use ($request){
+            $whenQuery->where('name', 'like', '%' . $request->name . '%');
+        })
+        ->when($request->filled('start_data'), function ($whenQuery) use ($request){
+            $whenQuery->where('start_data', '>=', \Carbon\Carbon::parse($request->start_data)->format('Y-m-d'));
+        })
+        ->when($request->filled('end_date'), function ($whenQuery) use ($request){
+            $whenQuery->where('end_date', '<=', \Carbon\Carbon::parse($request->end_date)->format('Y-m-d'));
+        })
+        ->orderByDesc('created_at')
+        ->get();
+
+        // Carregar a string com o HTML/conteúdo e determinar a orientação e o tamanho do arquivo
+        $pdf = PDF::loadView('offices.gerar-pdf', ['offices' => $offices])->setPaper('a4', 'portrait');
+
+        // Fazer o download do arquivo
+        return $pdf->download('cargos_e_funcoes.pdf');
+        
     }
 }
