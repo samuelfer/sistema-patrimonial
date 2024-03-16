@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+
 class ManagementUnit extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes, TenantAttributeTrait, TenantScoped;
@@ -17,7 +18,7 @@ class ManagementUnit extends Model
     protected $table = 'management_units';
 
     protected $fillable = ['name', 'cod', 'description', 'cnpj', 'phone', 'email', 
-                            'people_id'];
+                            'people_id', 'status'];
 
     public function getActivitylogOptions(): LogOptions
     {

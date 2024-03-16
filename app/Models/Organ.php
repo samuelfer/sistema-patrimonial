@@ -18,7 +18,7 @@ class Organ extends Model
     use HasFactory, LogsActivity, SoftDeletes, TenantAttributeTrait, TenantScoped;
 
     protected $fillable = ['name', 'sigla', 'description', 'management_unit_id', 
-        'address', 'status', 'phone', 'email', 'people_id', 'situation_id'];
+        'address', 'status', 'phone', 'email', 'people_id'];
 
     public function getActivitylogOptions(): LogOptions
     {
