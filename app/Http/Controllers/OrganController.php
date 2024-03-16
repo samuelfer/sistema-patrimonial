@@ -36,7 +36,6 @@ class OrganController extends Controller
         try {
             $data = $request->all();
             $data['status'] = 1;
-            $data['situation_id'] = 1;
             Organ::create($data);
             return redirect()->route('organs.view')->with('success', 'Registro salvo com sucesso!');
 
