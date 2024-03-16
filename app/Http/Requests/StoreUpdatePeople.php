@@ -86,4 +86,12 @@ class StoreUpdatePeople extends FormRequest
             'office_id.required'=>'selecione um cargo',
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'cpf' =>  preg_replace('/[^0-9]/', '', $this->cpf),
+            'phone' =>  preg_replace('/[^0-9]/', '', $this->phone),
+        ]);
+    }
 }

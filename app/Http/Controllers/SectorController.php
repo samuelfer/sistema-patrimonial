@@ -26,7 +26,7 @@ class SectorController extends Controller
     public function create()
     {
         $organs = Organ::all();
-        $peoples = People::where('situation_id', 1)->get();
+        $peoples = People::where('status', 1)->get();
         return view('sectors.create', compact('organs', 'peoples'));
     }
 
@@ -39,7 +39,7 @@ class SectorController extends Controller
             return redirect()->route('sectors.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!'.$e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
         }
       
     }

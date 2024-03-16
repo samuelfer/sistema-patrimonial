@@ -38,7 +38,7 @@ class People extends Model
 
     public function managementUnit() 
     {
-        return $this->hasOne(ManagementUnit::class);
+        return $this->belongsTo(ManagementUnit::class);
     }
 
 }

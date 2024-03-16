@@ -61,4 +61,12 @@ class StoreUpdateManagementUnit extends FormRequest
             'people_id' => 'O responsável é obrigatório'
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'cnpj' =>  preg_replace('/[^0-9]/', '', $this->cnpj),
+            'phone' =>  preg_replace('/[^0-9]/', '', $this->phone),
+        ]);
+    }
 }

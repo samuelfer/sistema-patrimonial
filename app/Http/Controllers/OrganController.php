@@ -27,7 +27,7 @@ class OrganController extends Controller
     public function create()
     {
         $managementUnits = ManagementUnit::all();
-        $peoples = People::where('situation_id', 1)->get();
+        $peoples = People::where('status', 1)->get();
         return view('organs.create', compact('managementUnits', 'peoples'));
     }
 
@@ -36,7 +36,6 @@ class OrganController extends Controller
         try {
             $data = $request->all();
             $data['status'] = 1;
-            $data['situation_id'] = 1;
             Organ::create($data);
             return redirect()->route('organs.view')->with('success', 'Registro salvo com sucesso!');
 

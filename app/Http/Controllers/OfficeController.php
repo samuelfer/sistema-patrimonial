@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateOffice;
+use App\Models\ManagementUnit;
 use App\Models\Office;
 use Exception;
 
@@ -20,6 +21,10 @@ class OfficeController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->is_admin) {
+            $managementUnits = ManagementUnit::all();
+            return view('offices.create', compact('managementUnits'));
+        }
         return view('offices.create');
     }
 
@@ -32,7 +37,7 @@ class OfficeController extends Controller
             return redirect()->route('offices.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!'.$e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
         }
       
     }
@@ -53,6 +58,10 @@ class OfficeController extends Controller
         $office = Office::find($id);
         if (!$office) {
             return redirect()->route('offices.view')->with('error', 'Registro não encontrado!');
+        }
+        if (auth()->user()->is_admin) {
+            $managementUnits = ManagementUnit::all();
+            return view('offices.create', compact('office', 'managementUnits'));
         }
         return view('offices.edit', compact('office'));
     }

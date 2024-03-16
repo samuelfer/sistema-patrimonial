@@ -80,4 +80,8 @@ class User extends Authenticatable
         return LogOptions::defaults()
         ->logOnly(['name', 'email', 'is_admin'])->dontSubmitEmptyLogs();
     }
+
+    public function managementUnit() {
+        return $this->belongsTo(ManagementUnit::class);
+    }
 }

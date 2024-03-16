@@ -11,7 +11,7 @@ class TenantScope implements Scope
 {
     public function apply(Builder $builder, Model $model)
     {
-        if(auth()->user()) {
+        if(auth()->user() && !auth()->user()->is_admin) {
             if($model instanceof ManagementUnit) {
                 $builder->where('id', auth()->user()->management_unit_id);
             } else {

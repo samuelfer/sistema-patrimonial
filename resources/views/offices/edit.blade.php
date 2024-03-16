@@ -23,28 +23,44 @@
                 @csrf 
                 @method('PUT')
                 <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                                value="{{$office->name}}" name='name' 
+                                id="name" placeholder="Digite um nome" required>
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
 
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                            value="{{$office->name}}" name='name' 
-                            id="name" placeholder="Digite um nome" required>
-                            @error('name')
+
+                        <div class="form-group col-md-2">
+                            <label for="status">Ativo</label>
+                            <select class="js-basic form-control" name="status">
+                                <option value="">Selecione</option>
+                                <option value="1" @if ($office->status == 1) selected @endif>Sim</option>
+                                <option value="0" @if ($office->status == 0) selected @endif>Não</option>
+                            </select>
+                            @error('status')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                    </div>
+                        </div>
 
-
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="js-basic form-control" name="status">
-                            <option value="">Selecione</option>
-                            <option value="1" @if ($office->status == 1) selected @endif>Sim</option>
-                            <option value="0" @if ($office->status == 0) selected @endif>Não</option>
-                        </select>
-                        @error('status')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                        @if (auth()->user()->is_admin)
+                            <div class="form-group col-md-6">
+                                <label for="management_unit_id">Selecione a Unidade Gestora</label>
+                                <select class="js-basic form-control" name="management_unit_id">
+                                    <option value="">Selecione</option>
+                                    @foreach($managementUnits as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('management_unit_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endif
                     </div>
 
                 </div>

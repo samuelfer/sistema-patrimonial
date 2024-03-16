@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('management_units', function (Blueprint $table) {
-            $table->foreignIdFor(\App\Models\Situation::class)->onDelete('CASCADE');
+            $table->boolean('status')->default(1);
         });
     }
 

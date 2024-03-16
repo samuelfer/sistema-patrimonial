@@ -51,7 +51,7 @@
                     
                     <div class="row">
                         <div class="form-group col-md-3">
-                            <label for="cod">Cnpj</label>
+                            <label for="cnpj">Cnpj</label>
                             <input type="text" class="form-control @error('cnpj') is-invalid @enderror" name='cnpj' id="cnpj" 
                                 placeholder="Digite um cnpj" value="{{ old('cnpj') }}">
                                 @error('cnpj')
@@ -83,18 +83,6 @@
                     </div>
                     <div class="row">
 
-                        <div class="form-group col-md-5">
-                            <label for="people_id">Selecione o responsável</label>
-                            <select class="js-basic form-control" name="people_id">
-                                <option value="">Selecione</option>
-                                @foreach($peoples as $people)
-                                    <option value="{{ $people->id }}">{{ $people->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('people_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
                         <div class="form-group col-md-12">
                             <label for="descricao">Descrição</label>
                             <input type="text" class="form-control @error('descricao') is-invalid @enderror" 
@@ -124,7 +112,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('#phone').inputmask('(99)-999-9999');
+            $('#phone').inputmask('(99)-9999-9999');
+            $('#cnpj').inputmask('99.999.999/999-99');
         });
     </script>
 @stop

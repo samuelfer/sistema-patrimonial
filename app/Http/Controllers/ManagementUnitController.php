@@ -25,7 +25,7 @@ class ManagementUnitController extends Controller
      */
     public function create()
     {
-        $peoples = People::where('situation_id', 1)->get();
+        $peoples = People::where('status', 1)->get();
         return view('management_units.create', compact('peoples'));
     }
 
@@ -33,12 +33,13 @@ class ManagementUnitController extends Controller
     {
         try {
             $data = $request->all();
-            
+            $data['status'] = 1;
             ManagementUnit::create($data);
             return redirect()->route('management_units.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
+            dd($e);
+            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!'.$e->getMessage());
         }
       
     }
@@ -65,7 +66,7 @@ class ManagementUnitController extends Controller
         if (!$unit) {
             return redirect()->route('management_units.view')->with('error', 'Registro não encontrado!');
         }
-        $peoples = People::where('situation_id', 1)->get();
+        $peoples = People::where('status', 1)->get();
         return view('management_units.edit', compact('unit', 'peoples'));
     }
 

@@ -66,7 +66,7 @@
                                 @enderror
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label for="email">Email</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                 name='email' id="email"
@@ -76,7 +76,7 @@
                                 @enderror
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-5">
                             <label for="people_id">Selecione o responsável</label>
                             <select class="js-basic form-control" name="people_id">
                                 <option value="">Selecione</option>
@@ -120,7 +120,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('#phone').inputmask('(99)-999-9999');
+            $('#phone').inputmask('(99)-9999-9999');
         });
     </script>
 @stop
