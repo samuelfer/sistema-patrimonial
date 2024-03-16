@@ -6,5 +6,6 @@ return [
         [
             'password.store',
             'password.index',
+            'gerar-pdf-conta'
         ]
     ];
