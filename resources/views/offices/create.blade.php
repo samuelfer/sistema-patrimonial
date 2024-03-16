@@ -20,16 +20,31 @@
             <form action="{{route('offices.store')}}" method="post" >
                 @csrf 
                 <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name='name' id="name" 
+                                placeholder="Digite um nome" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                        </div>
 
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" name='name' id="name" 
-                            placeholder="Digite um nome" value="{{ old('name') }}" required>
-                            @error('name')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        @if (auth()->user()->is_admin)
+                            <div class="form-group col-md-6">
+                                <label for="management_unit_id">Selecione a Unidade Gestora</label>
+                                <select class="js-basic form-control" name="management_unit_id">
+                                    <option value="">Selecione</option>
+                                    @foreach($managementUnits as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('management_unit_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endif
                     </div>
-
                 </div>
 
                 <div class="card-footer">
