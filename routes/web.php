@@ -98,6 +98,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::post('/cargos', [App\Http\Controllers\OfficeController::class, 'store'])->name('offices.store');
    Route::put('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'update'])->name('offices.update');
    Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.destroy');
+   Route::get('/gerar-pdf-conta', [App\Http\Controllers\OfficeController::class, 'gerarPdf'])->name('offices.gerar-pdf');
 
    ############## PESSOAS ###############
    Route::get('/peoples', [App\Http\Controllers\PeopleController::class, 'index'])->name('peoples.view');
