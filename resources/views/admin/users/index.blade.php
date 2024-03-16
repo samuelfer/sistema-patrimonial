@@ -33,6 +33,7 @@
                                         <th>ID</th>
                                         <th>NOME</th>
                                         <th>EMAIL</th>
+                                        <th>UNIDADE GESTORA</th>
                                         <th>CRIADO</th>
                                         <th>ATUALIZADO</th>
                                         <th style="width: 20px;">AÇÕES</th>
@@ -41,9 +42,10 @@
                                 <tbody>
                                     @forelse($users as $user)
                                     <tr>
-                                        <td>{{ $user->id}}</td>
-                                        <td>{{ $user->name}}</td>
-                                        <td>{{ $user->email}}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->managementUnit?->name }}</td>
                                         <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
                                         <td>{{ $user->updated_at->format('d/m/Y H:i') }}</td>
                                         <td style="display: inline-block; width: 110px;">
