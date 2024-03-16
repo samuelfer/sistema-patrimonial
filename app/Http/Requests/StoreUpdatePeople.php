@@ -58,7 +58,7 @@ class StoreUpdatePeople extends FormRequest
 
             if ($this->rg != null) {
                 $rules = [
-                    'rg' => 'required|email|unique:peoples,rg,'.$this->id.',id'
+                    'rg' => 'required|numeric|unique:peoples,rg,'.$this->id.',id'
                 ];
             }
         }
@@ -80,6 +80,7 @@ class StoreUpdatePeople extends FormRequest
             'cpf.required' => 'O cpf é obrigatório',
             'cpf.unique'=>'Esse cpf já está em uso',
             'rg.unique'=>'Esse RG já está em uso',
+            'rg.numeric'=>'O RG precisa ser numérico',
             'matricula.unique' => 'Essa matricula ja está em uso',
             'matricula.numeric'=>'A matricula precisa ser numérica',
             'office_id.required'=>'selecione um cargo',
