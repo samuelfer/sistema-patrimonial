@@ -9,7 +9,7 @@ class AcitivityLogController extends Controller
 {
     public function index() 
     {
-        $allActivities = ModelsActivity::all();
+        $allActivities = ModelsActivity::orderBy('created_at', 'desc')->get();
         return view('admin.logs.index', compact('allActivities'));
     }
 }
