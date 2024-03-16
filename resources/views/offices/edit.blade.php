@@ -36,7 +36,7 @@
 
 
                     <div class="form-group">
-                        <label for="status">Status</label>
+                        <label for="status">Ativo</label>
                         <select class="js-basic form-control" name="status">
                             <option value="">Selecione</option>
                             <option value="1" @if ($office->status == 1) selected @endif>Sim</option>
