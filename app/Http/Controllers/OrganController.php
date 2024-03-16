@@ -27,7 +27,7 @@ class OrganController extends Controller
     public function create()
     {
         $managementUnits = ManagementUnit::all();
-        $peoples = People::where('situation_id', 1)->get();
+        $peoples = People::where('status', 1)->get();
         return view('organs.create', compact('managementUnits', 'peoples'));
     }
 
