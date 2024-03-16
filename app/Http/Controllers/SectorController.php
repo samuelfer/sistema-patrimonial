@@ -39,7 +39,7 @@ class SectorController extends Controller
             return redirect()->route('sectors.view')->with('success', 'Registro salvo com sucesso!');
 
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!'.$e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao tentar cadastrar!');
         }
       
     }
