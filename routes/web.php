@@ -81,6 +81,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::post('/orgaos', [App\Http\Controllers\OrganController::class, 'store'])->name('organs.store');
    Route::put('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'update'])->name('organs.update');
    Route::delete('/orgaos/{id}', [App\Http\Controllers\OrganController::class, 'destroy'])->name('organs.destroy');
+   Route::get('/orgaos-gerar-pdf', [App\Http\Controllers\OrganController::class, 'gerarPdf'])->name('orgaos.gerar-pdf');
 
 
    ############## SETOR ###############
@@ -98,7 +99,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
    Route::post('/cargos', [App\Http\Controllers\OfficeController::class, 'store'])->name('offices.store');
    Route::put('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'update'])->name('offices.update');
    Route::delete('/cargos/{id}', [App\Http\Controllers\OfficeController::class, 'destroy'])->name('offices.destroy');
-   Route::get('/gerar-pdf-conta', [App\Http\Controllers\OfficeController::class, 'gerarPdf'])->name('offices.gerar-pdf');
+   Route::get('/cargos-gerar-pdf', [App\Http\Controllers\OfficeController::class, 'gerarPdf'])->name('offices.gerar-pdf');
 
    ############## PESSOAS ###############
    Route::get('/peoples', [App\Http\Controllers\PeopleController::class, 'index'])->name('peoples.view');
