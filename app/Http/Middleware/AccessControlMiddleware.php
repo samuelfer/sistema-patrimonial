@@ -19,12 +19,11 @@ class AccessControlMiddleware
     {
         $routeName = $request->route()->getName();
         $ignorePermissions = config('accesslistexception')['ignore.permissions'];
-
+    
         if (!in_array($routeName, $ignorePermissions)) {
+
             $this->authorize($routeName);
         }
-       
-        $this->authorize($routeName);
 
         return $next($request);
     }
