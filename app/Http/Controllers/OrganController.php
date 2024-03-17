@@ -7,18 +7,22 @@ use App\Http\Requests\StoreUpdateOrgan;
 use App\Models\ManagementUnit;
 use App\Models\Organ;
 use App\Models\People;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class OrganController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $organs = Organ::with('managementUnit')->paginate(10);
-        return view('organs.index', compact('organs'));
+        $organs = $this->filtro($request);
+        $peoples = People::where('status', 1)->get();
+
+        return view('organs.index', ['organs' => $organs, 'name' => $request->name, 
+                                                'peoples' => $peoples]);
     }
 
     /**
@@ -113,5 +117,34 @@ class OrganController extends Controller
         }
         $organ->delete();
         return redirect()->route('sectors.view')->with('success', 'Registro excluído com sucesso!');
+    }
+
+    public function gerarPdf(Request $request)
+    {
+        $organs = $this->filtro($request);
+        // Carregar a string com o HTML/conteúdo e determinar a orientação e o tamanho do arquivo
+        $pdf = PDF::loadView('organs.gerar-pdf', ['organs' => $organs])->setPaper('a4', 'portrait');
+
+        // Fazer o download do arquivo
+        return $pdf->download('orgaos.pdf');
+    }
+
+    private function filtro(Request $request) 
+    {
+        try {
+            $organs = Organ::with('managementUnit')->when($request->has('name'), function ($whenQuery) use ($request){
+                $whenQuery->where('name', 'like', '%' . $request->name . '%');
+            })
+            ->when($request->filled('people_id'), function ($whenQuery) use ($request){
+                $whenQuery->where('people_id', $request->people_id);
+            })
+            ->orderByDesc('name')
+            ->get();
+           return $organs;     
+            
+        } catch (Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Ocorreu um erro ao tentar gerar o PDF.');
+        }
     }
 }
