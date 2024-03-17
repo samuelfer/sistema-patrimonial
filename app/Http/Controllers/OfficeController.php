@@ -14,18 +14,7 @@ class OfficeController extends Controller
 {
     public function index(Request $request)
     {
-        $offices = Office::when($request->has('name'), function ($whenQuery) use ($request){
-            $whenQuery->where('name', 'like', '%' . $request->name . '%');
-        })
-        ->when($request->filled('start_date'), function ($whenQuery) use ($request){
-            $whenQuery->where('start_date', '>=', \Carbon\Carbon::parse($request->start_date)->format('Y-m-d'));
-        })
-        ->when($request->filled('end_date'), function ($whenQuery) use ($request){
-            $whenQuery->where('end_date', '<=', \Carbon\Carbon::parse($request->end_date)->format('Y-m-d'));
-        })
-        ->orderByDesc('created_at')
-        ->get();
-
+        $offices = $this->filtro($request);
         return view('offices.index', ['offices' => $offices, 'name' => $request->name, 
                                                 'startDate' => $request->start_date, 'endDate' => $request->end_date]);
     }
@@ -116,6 +105,17 @@ class OfficeController extends Controller
 
     public function gerarPdf(Request $request)
     {
+        $offices = $this->filtro($request);
+        // Carregar a string com o HTML/conteúdo e determinar a orientação e o tamanho do arquivo
+        $pdf = PDF::loadView('offices.gerar-pdf', ['offices' => $offices])->setPaper('a4', 'portrait');
+
+        // Fazer o download do arquivo
+        return $pdf->download('cargos_e_funcoes.pdf');
+        
+    }
+
+    private function filtro(Request $request) 
+    {
         $offices = Office::when($request->has('name'), function ($whenQuery) use ($request){
             $whenQuery->where('name', 'like', '%' . $request->name . '%');
         })
@@ -125,14 +125,8 @@ class OfficeController extends Controller
         ->when($request->filled('end_date'), function ($whenQuery) use ($request){
             $whenQuery->where('end_date', '<=', \Carbon\Carbon::parse($request->end_date)->format('Y-m-d'));
         })
-        ->orderByDesc('created_at')
+        ->orderByDesc('name')
         ->get();
-
-        // Carregar a string com o HTML/conteúdo e determinar a orientação e o tamanho do arquivo
-        $pdf = PDF::loadView('offices.gerar-pdf', ['offices' => $offices])->setPaper('a4', 'portrait');
-
-        // Fazer o download do arquivo
-        return $pdf->download('cargos_e_funcoes.pdf');
-        
+        return $offices;
     }
 }

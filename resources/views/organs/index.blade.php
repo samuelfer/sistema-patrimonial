@@ -8,12 +8,55 @@
 
 @section('content')
 
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">Filtros</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <form action="{{ route('organs.view') }}">
+            <div class="row">
+
+                <div class="form-group col-md-4 col-sm-12">
+                    <label class="form-label" for="name">Nome</label>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ $name }}"
+                        placeholder="Nome" />
+                </div>
+
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="people_id">Selecione o responsável</label>
+                    <select class="js-basic form-control" name="people_id">
+                        <option value="">Selecione</option>
+                        @foreach($peoples as $people)
+                            <option value="{{ $people->id }}">{{ $people->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-sm-12 mt-3 pt-4">
+                    <button type="submit" class="btn btn-info btn-sm">Pesquisar</button>
+                    <a href="{{ route('organs.view') }}" class="btn btn-warning btn-sm">Limpar</a>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
         @include('shared.success-message')
         @include('shared.error-message')
         <h3 class="card-title">Listagem de Órgãos</h3>
             @can('management_units.create')
+                <a href="{{ url('orgaos-gerar-pdf?' . request()->getQueryString()) }}"
+                class="btn btn-sm btn-warning float-right ml-2">Gerar PDF</a>
                 <a href="{{route('organs.create')}}" class="btn btn-sm btn-success float-right">NOVO ÓRGÃO</a>
             @endcan
     </div>
@@ -64,7 +107,7 @@
 
                         @empty
                         <tr>
-                            <td colspan="5"> Ainda não há órgão cadastrado.</td>
+                            <td colspan="5">Nenhum registro encontrado.</td>
                         </tr>
                         @endforelse
                     

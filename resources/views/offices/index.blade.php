@@ -66,7 +66,7 @@
         @include('shared.error-message')
         <h3 class="card-title">Listagem de Cargos e Funções</h3>
         @can('offices.create')
-        <a href="{{ url('gerar-pdf-conta?' . request()->getQueryString()) }}"
+        <a href="{{ url('cargos/gerar-pdf?' . request()->getQueryString()) }}"
             class="btn btn-sm btn-warning float-right ml-2">Gerar PDF</a>
         <a href="{{route('offices.create')}}" class="btn btn-sm btn-success float-right">NOVO CARGO E FUNÇÃO</a>
         @endcan
@@ -113,7 +113,7 @@
 
                             @empty
                             <tr>
-                                <td colspan="5"> Nenhum registro encontrado.</td>
+                                <td colspan="5">Nenhum registro encontrado.</td>
                             </tr>
                             @endforelse
 
