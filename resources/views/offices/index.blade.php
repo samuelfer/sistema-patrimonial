@@ -132,15 +132,19 @@
 
 @section('js')
 
+
 <script>
+
 $(function() {
 
     $('#start_date').datetimepicker({
-        format: 'DD-MM-YYYY'
+        format: 'DD-MM-YYYY',
+        language: 'pt-br'
     });
+    
 
     $('#end_date').datetimepicker({
-        format: 'DD-MM-YYYY'
+        format: 'DD-MM-YYYY',
     });
 
     $("#list-offices").DataTable({
